@@ -1,0 +1,343 @@
+html{
+    font-family: Arial;
+    margin: 0;
+    padding: 0;
+}
+
+
+/*HEADER*/
+header{
+    background-color: #395B64;
+    border-radius: 0 0 15px 15px;
+}
+.nav{
+    display: flex;
+    align-items: center;
+    gap: 200px;
+}
+.nav .topLogo img{
+    height: 60px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 0 0 0 15px;
+}
+.nav input{
+    width: 1000px;
+    background-color: rgb(170, 170, 170);
+    padding: 5px;
+    border-radius: 0 0 15px 15px;
+}
+.nav input::placeholder{
+    color: #F5225C;
+    font-family: arial;
+}
+.nav .logoAccountEtc img{
+    height: 50px;
+    width: 50px; 
+}
+.nav .logoAccountEtc .panier{
+    margin-right: 200px;
+}
+
+
+
+/*NAVBAR*/
+.navbar{
+    list-style: none;
+    color: #16F5B2;
+    height: 50px;
+    width: 1200px;
+    margin-top: 30px;
+    margin-left: 300px;
+    border-radius: 15px;    
+}
+.navbar .nav-link{
+    border-right: 2px solid #16F5B2;
+    padding-left: 10px;
+    padding-right: 40px;
+}
+.navbar .dropdown-menu{
+    background-color: #F5225C;
+}
+.navbar .dropdown-item{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: white;
+    border-bottom: 1px solid #16F5B2;
+}
+
+
+
+/*PROCHAINE SORTIE ATTENDU*/
+.title{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 40px;
+    padding-top: 10px;
+    color: #F5225C;
+}
+.title .titleh3{
+    margin: auto;
+}
+#carrousel{
+    
+    border-radius: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+#carouselExampleCaptions{
+    margin: auto;
+    width: 60%;
+    margin-top: 10px;
+    padding: 20px;
+}
+
+.subTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: #F5225C;
+
+}
+.subTitle .subTitleh3{
+    display: flex;
+}
+.subTitle .subTitleh3 h3{
+    padding-right: 30px;
+}
+.subTitle button{
+    background-color: #16F5B2;
+    color: #F5225C;
+    border-radius: 10px;
+    border-color: #16F5B2;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+
+
+/*DERNIERE SORTIE*/
+#titleDerniereSortie{
+    text-align: center;
+    margin-top: 70px;
+    color: #F5225C;
+}
+#derniereSortie{
+    display: flex;
+    color: #F5225C;
+    margin-top: 50px;
+}
+#pictureFifa{
+    margin: auto;
+    margin-left: 300px;
+}
+#pictureNba{
+    margin: auto;
+}
+#pictureFifa img{
+    width: 40%;
+}
+#pictureNba img{
+    width: 60%;
+}
+#pictureFifa .subPicFifa{
+    margin-left: 110px;
+    margin-top: 10px;
+}
+#pictureFifa .subPicFifa h3{
+    margin-left: 20px; 
+}
+#pictureNba .subPicNba{
+    margin-left: 170px;
+    margin-top: 10px;
+}
+#pictureNba .subPicNba h3{
+    margin-left: 20px; 
+}
+#derniereSortie button{
+    background-color: #16F5B2;
+    color: #F5225C;
+    border-radius: 10px;
+    border-color: #16F5B2;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+
+
+
+/*Sous Derniere sortie*/
+#titleSousDS{
+    margin-top: 40px;
+    color: #F5225C;
+}
+#sousDerniereSortie{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 5px;
+} 
+.image-description{
+    margin-top: 5px;
+}
+.image{
+    width: 300px;
+    height: 300px;
+}
+.image img{
+    max-width: 100%;
+    max-height: 100%;
+}
+#sousDerniereSortie button{
+    background-color: #16F5B2;
+    color: #F5225C;
+    border-radius: 10px;
+    border-color: #16F5B2;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+#sousDerniereSortie figcaption{
+    color: #F5225C;
+}
+
+
+
+
+/*TOP VENTES*/
+#titleTopVente{
+    margin-top: 100px;
+    color: #F5225C;
+}
+#topVente{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 5px;
+} 
+.imageTopVente{
+    width: 300px;
+    height: 300px;
+    
+}
+.imageTopVente img{
+    max-width: 100%;
+    max-height: 100%;
+}
+#topVente button{
+    background-color: #16F5B2;
+    color: #F5225C;
+    border-radius: 10px;
+    border-color: #16F5B2;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+#topVente figcaption{
+    color: #F5225C;
+}
+
+
+
+/*VOIR TOUT*/
+#buttonVoirTout{
+    text-align: center;
+    margin-top: 250px;
+}
+#buttonVoirTout button{
+    background-color: #F5225C;
+    color: #16F5B2;
+    border-radius: 10px;
+    border-color: #F5225C;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+
+
+/*FOOTER*/
+.footer-basic{
+    padding:40px 0;
+    background-color:#395B64;
+    color:#F5225C;
+}
+  
+.footer-basic ul{
+    padding:0;
+    list-style:none;
+    text-align:center;
+    font-size:18px;
+    line-height:1.6;
+    margin-bottom:0;
+}
+  
+.footer-basic li{
+    padding:0 10px;
+}
+  
+.footer-basic ul a{
+    color:inherit;
+    text-decoration:none;
+    opacity:0.8;
+}
+  
+.footer-basic ul a:hover{
+    opacity:1;
+}
+  
+.footer-basic .social{
+    text-align:center;
+    padding-bottom:25px;
+}
+  
+.footer-basic .social > a{
+    font-size:24px;
+    width:40px;
+    height:40px;
+    line-height:40px;
+    display:inline-block;
+    text-align:center;
+    border-radius:50%;
+    border:1px solid #16F5B2;
+    margin:0 8px;
+    color:inherit;
+    opacity:0.75;
+}
+  
+.footer-basic .social > a:hover{
+    opacity:0.9;
+}
+  
+.footer-basic .copyright{
+    margin-top:15px;
+    text-align:center;
+    font-size:13px;
+    color:#aaa;
+    margin-bottom:0;
+}
+
+
+
+
+
+
+
+
+
+
+/*Register.php + Connection.php*/
+
+.row h2, label, p{
+    color: #F5225C;
+}
+.row button{
+    background-color: #16F5B2;
+    border-color: #16F5B2;
+    color: #F5225C;
+}
+.row a{
+    text-decoration: none;
+    color: #F5225C;
+}
+
+
+
