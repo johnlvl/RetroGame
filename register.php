@@ -1,5 +1,43 @@
 <?php
+require('db.php');
 
+
+if(!empty($_POST['fist_name']) && !empty($_POST['last_name']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['adress'])){
+
+    $firstName = $_POST['fist_name'];
+    $lastName = $_POST['last_name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $adress = $_POST['adress'];
+
+    
+// test si email deja utilisé
+
+$req = $db->prepare('SELECT COUNT(*) as numberEmail FROM customer WHERE email = ?');
+$req->execute(array($email));
+
+while($email_verification = $req->fetch()){
+    if($email_verification['numberEmail'] != 0){
+        header('location: ../?error=1&email=1');
+    }
+}
+
+// Secret
+$secret = sha1($email).time();
+$secret = sha1($secret).time().time();
+
+// Cryptage mdp
+$password = "aq1".sha1($password."1254")."25";
+
+
+// Envoie de la requete
+$req = $db->prepare("INSERT INTO customer (first_name, last_name, email, password, adress, secret) VALUE (?, ?, ?, ?, ?, ?)");
+$req->execute(array($firstName, $lastName, $email, $password, $adress, $secret));
+
+header('location: ../?success=1');
+
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -35,7 +73,21 @@
       <div class="row d-flex justify-content-center">
         <div class="col-lg-8">
           <h2 class="fw-bold mb-5">S'inscrire maintenant</h2>
-          <form method="POST" action="connection.php">
+
+          <?php
+              if(isset($_GET['error'])){
+                  if(isset($_GET['email'])){
+                      echo '<p id="error">Cette adresse email est déjà utilisé.</p>';
+                  }
+              }
+              else if(isset($_GET['success'])){
+                  echo '<p id="success">Inscription faite.</p>';
+              }
+        
+        
+          ?>
+
+          <form method="POST" action="register.php">
             <!-- 2 column grid layout with text inputs for the first and last names -->
             <div class="row">
               <div class="col-md-6 mb-4">

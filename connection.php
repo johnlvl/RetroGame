@@ -17,15 +17,15 @@ if(!empty($_POST['email']) && !empty($_POST['password'])){
 	$req = $db->prepare('SELECT * FROM customer WHERE email = ?');
 	$req->execute(array($email));
 
-	while($user = $req->fetch()){
+	while($customer = $req->fetch()){
 
-		if($password == $user['password']){
+		if($password == $customer['password']){
 			$error = 0;
 			$_SESSION['connect'] = 1;
-			$_SESSION['pseudo']	 = $user['pseudo'];
+			$_SESSION['pseudo']	 = $customer['pseudo'];
 
 			if(isset($_POST['connect'])) {
-				setcookie('log', $user['secret'], time() + 365*24*3600, '/', null, false, true);
+				setcookie('log', $customer['secret'], time() + 365*24*3600, '/', null, false, true);
 			}
 
 			header('location: connection.php?success=1');
