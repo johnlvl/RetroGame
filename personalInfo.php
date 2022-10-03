@@ -5,7 +5,8 @@ session_start();
 require('db.php');
 
 //requête
-$req = $db->query("SELECT * FROM customer");
+$req = $db->prepare("SELECT * FROM customer");
+$req->execute(array());
 
 //récupère les données
 $infoPerso = $req->fetchAll();
@@ -21,7 +22,7 @@ $infoPerso = $req->fetchAll();
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    <title>Retro Game</title>
+    <title>Retro Game comtpe</title>
 </head>
 <body>
     
@@ -45,7 +46,7 @@ $infoPerso = $req->fetchAll();
         <div class="col-lg-8">
           <h2 class="fw-bold mb-5">Information compte</h2>
 
-          <form method="POST" action="personnalInfo.php">
+          <form method="POST" action="personalInfo.php">
             <?php foreach($infoPerso as $infoPersos): ?>
 
   <div class="container py-5">
@@ -58,7 +59,7 @@ $infoPerso = $req->fetchAll();
                             <p class="mb-0">Nom, prénom</p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0"><?php echo $infoPersos["first_name"]?></p>
+                            <p class="text-muted mb-0"><?php echo $infoPersos["last_name"]." " .$infoPersos["first_name"]?></p>
                         </div>
                         </div>
                         <hr>
@@ -67,7 +68,7 @@ $infoPerso = $req->fetchAll();
                             <p class="mb-0">Email</p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0">example@example.com</p>
+                            <p class="text-muted mb-0"><?php echo $infoPersos["email"]?></p>
                         </div>
                         </div>
                         <hr>
@@ -76,7 +77,7 @@ $infoPerso = $req->fetchAll();
                             <p class="mb-0">Téléphone</p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0">02-02-02-02-02</p>
+                            <p class="text-muted mb-0"><?php echo $infoPersos["phone"]?></p>
                         </div>
                         </div>
                         <hr>
@@ -85,7 +86,7 @@ $infoPerso = $req->fetchAll();
                             <p class="mb-0">Téléphone Mobile</p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0">06-06-06-06-06</p>
+                            <p class="text-muted mb-0"><?php echo $infoPersos["phone"]?></p>
                         </div>
                         </div>
                         <hr>
@@ -94,18 +95,19 @@ $infoPerso = $req->fetchAll();
                             <p class="mb-0">Adresse</p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                            <p class="text-muted mb-0"><?php echo $infoPersos["adress"]?></p>
                         </div>
                     </div>
                 </div>
             </div>
                 <div class="d-flex justify-content-end">
                     <button type="button" class="btn btn-light btn-lg me-2"><a href="index.php" >Retour à l'acceuil</a></button>
-                    <button type="button" class="btn btn-light btn-lg">Modifier les informations</button>
+                    <button type="button" class="btn btn-light btn-lg"><a href="modifPersonalInfo.php">Modifier les informations</a></button>
                 </div>
         </div>
         <?php endforeach; ?>
-        </form>
+            </form>
+        
     </div>
   
 </div>
@@ -113,12 +115,26 @@ $infoPerso = $req->fetchAll();
 
 
 
+
 <!--Dernière commande-->
+<?php
+
+//requête
+$req = $db->query("SELECT * FROM last_command");
+
+//récupère les données
+$lastCommand = $req->fetchAll();
+
+
+?>
 
 <div class="row d-flex justify-content-center">
         <div class="col-lg-8">
           <h2 class="fw-bold mb-5">Dernière commande</h2>
 
+          
+          <form method="POST" action="personnalInfo.php">
+          <?php foreach($lastCommand as $lastCommands): ?>
 
 <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -136,7 +152,7 @@ $infoPerso = $req->fetchAll();
               <div class="col-md-2 d-flex justify-content-center">
                 <div>
                   <p class="small text-muted mb-4 pb-2">Nom</p>
-                  <p class="lead fw-normal mb-0">God of War Ragnarok</p>
+                  <p class="lead fw-normal mb-0"><?php echo $lastCommands["name"]?></p>
                 </div>
               </div>
               <div class="col-md-2 d-flex justify-content-center">
@@ -189,6 +205,10 @@ $infoPerso = $req->fetchAll();
       </div>
     </div>
   </div>
+  
+  </form>
+
+  <?php endforeach; ?>
 </section>
 
 </body>

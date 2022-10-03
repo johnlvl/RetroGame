@@ -37,67 +37,7 @@ session_start();
         <div class="col-lg-8">
           <h2 class="fw-bold mb-5">Panier</h2>
 
-<section class="vh-100" style="background-color: #F5225C;">
-  <div class="container h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col">
-        
 
-        <div class="card mb-4">
-          <div class="card-body p-4">
-
-            <div class="row align-items-center">
-              <div class="col-md-2">
-                <img src="Design/Top_1.jpg"
-                  class="img-fluid" alt="Generic placeholder image">
-              </div>
-              <div class="col-md-2 d-flex justify-content-center">
-                <div>
-                  <p class="small text-muted mb-4 pb-2">Nom</p>
-                  <p class="lead fw-normal mb-0">God of War Ragnarok</p>
-                </div>
-              </div>
-              <div class="col-md-2 d-flex justify-content-center">
-                <div>
-                  <p class="small text-muted mb-4 pb-2">Plateforme</p>
-                  <p class="lead fw-normal mb-0">PS5</p>
-                </div>
-              </div>
-              <div class="col-md-2 d-flex justify-content-center">
-                <div>
-                  <p class="small text-muted mb-4 pb-2">Quantiter</p>
-                  <p class="lead fw-normal mb-0">1</p>
-                </div>
-              </div>
-              <div class="col-md-2 d-flex justify-content-center">
-                <div>
-                  <p class="small text-muted mb-4 pb-2">Prix</p>
-                  <p class="lead fw-normal mb-0">79.99€</p>
-                </div>
-              </div>
-              <div class="col-md-2 d-flex justify-content-center">
-                <div>
-                  <p class="small text-muted mb-4 pb-2">Total</p>
-                  <p class="lead fw-normal mb-0">79.99€</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="card mb-5">
-          <div class="card-body p-4">
-
-            <div class="float-end">
-              <p class="mb-0 me-5 d-flex align-items-center">
-                <span class="small text-muted me-2">Total commande:</span> <span
-                  class="lead fw-normal">79.99€</span>
-              </p>
-            </div>
-
-          </div>
-        </div>
 
         <div class="d-flex justify-content-end">
           <button type="button" class="btn btn-light btn-lg me-2"><a href="index.php" >Retour à l'acceuil</a></button>

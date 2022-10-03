@@ -77,3 +77,14 @@ CREATE TABLE IF NO EXISTS customer_account
     PRIMARY KEY (id),
     FOREIGN KEY (customer) REFERENCES id(id)
 );
+
+
+/*LAST COMMAND*/
+CREATE TABLE IF NO EXISTS last_command
+(
+    id INT NOT NULL AUTO_INCREMENT, 
+    name VARCHAR(20) NOT NULL, 
+    date_command DATE, 
+    PRIMARY KEY (id),
+    FOREIGN KEY (customer_account) REFERENCES id(id)
+);

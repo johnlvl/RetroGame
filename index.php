@@ -3,7 +3,15 @@ session_start();
 
 require('db.php');
 
+    //requête
+    $req = $db->prepare("SELECT * FROM article");
+    $req->execute(array());
+        
 
+    //récupère les données
+     $lastRelease = $req->fetchAll();
+        
+    
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -35,7 +43,7 @@ require('db.php');
 
 
                 <?php if(isset($_SESSION['connect'])){ ?>
-                <a href="personnalInfo.php"><img src="Design/icons_account.png" alt="account"></a>
+                <a href="personalInfo.php"><img src="Design/icons_account.png" alt="account"></a>
                 <a href="disconnect.php"><img src="Design/cross.png" alt=""></a>
                 <?php } else{ ?>
                 <a href="connection.php"><img src="Design/icons_account.png" alt="account"></a>
@@ -191,9 +199,12 @@ require('db.php');
 
 <!--DERNIERE SORTIE-->
     <div id="titleDerniereSortie">
+    
+       
         <h3>DERNIERE SORTIE</h3>
     </div>
         <div id="derniereSortie">
+            
                 <div id="pictureFifa">
                     <img src="Design/Fifa23.jpg" class="rounded float-center" alt="...">
                     <div class="subPicFifa">
@@ -214,6 +225,8 @@ require('db.php');
                 </div>    
             </div>
         </div>
+        
+        
     </div>
 
 

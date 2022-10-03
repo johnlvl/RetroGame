@@ -1,24 +1,22 @@
 <?php
 require('db.php');
 
-$step = 'step zero';
+
 if(!empty($_POST['fist_name']) && !empty($_POST['last_name']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['adress'])){
-  $step = 'step one';
+
     $firstName = $_POST['fist_name'];
     $lastName = $_POST['last_name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $adress = $_POST['adress'];
-    $step = 'step two';
+   
     
 // test si email deja utilisé
 
 $req = $db->prepare('SELECT COUNT(*) as numberEmail FROM customer WHERE email = ?');
-$step = 'step three';
 $req->execute(array($email));
-$step = 'step four';
-var_dump($req->fetch());
-$step = 'step five';
+
+
 while($email_verification = $req->fetch()){
   $step = 'step six';
     if($email_verification['numberEmail'] != 0){
