@@ -1,24 +1,28 @@
 <?php
 require('db.php');
 
-
+$step = 'step zero';
 if(!empty($_POST['fist_name']) && !empty($_POST['last_name']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['adress'])){
-
+  $step = 'step one';
     $firstName = $_POST['fist_name'];
     $lastName = $_POST['last_name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $adress = $_POST['adress'];
-
+    $step = 'step two';
     
 // test si email deja utilisé
 
 $req = $db->prepare('SELECT COUNT(*) as numberEmail FROM customer WHERE email = ?');
+$step = 'step three';
 $req->execute(array($email));
-
+$step = 'step four';
+var_dump($req->fetch());
+$step = 'step five';
 while($email_verification = $req->fetch()){
+  $step = 'step six';
     if($email_verification['numberEmail'] != 0){
-        header('location: ../?error=1&email=1');
+        header('location: register.php/?error=1&email=1');
     }
 }
 
@@ -34,7 +38,7 @@ $password = "aq1".sha1($password."1254")."25";
 $req = $db->prepare("INSERT INTO customer (first_name, last_name, email, password, adress, secret) VALUE (?, ?, ?, ?, ?, ?)");
 $req->execute(array($firstName, $lastName, $email, $password, $adress, $secret));
 
-header('location: ../?success=1');
+header('location: register.php/?success=1');
 
 
 }
@@ -75,6 +79,7 @@ header('location: ../?success=1');
           <h2 class="fw-bold mb-5">S'inscrire maintenant</h2>
 
           <?php
+          echo $step;
               if(isset($_GET['error'])){
                   if(isset($_GET['email'])){
                       echo '<p id="error">Cette adresse email est déjà utilisé.</p>';
@@ -92,13 +97,13 @@ header('location: ../?success=1');
             <div class="row">
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <input type="text" id="form3Example1" class="form-control" />
+                  <input type="text" id="form3Example1" class="form-control" name='fist_name' />
                   <label class="form-label" for="form3Example1">Prénom</label>
                 </div>
               </div>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <input type="text" id="form3Example2" class="form-control" />
+                  <input type="text" id="form3Example2" class="form-control" name='last_name'/>
                   <label class="form-label" for="form3Example2">Nom</label>
                 </div>
               </div>
@@ -106,19 +111,19 @@ header('location: ../?success=1');
 
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <input type="email" id="form3Example3" class="form-control" />
+              <input type="email" id="form3Example3" class="form-control" name="email"/>
               <label class="form-label" for="form3Example3">Email</label>
             </div>
 
             <!-- Adress input -->
             <div class="form-outline mb-4">
-              <input type="text" id="form3Example4" class="form-control" />
+              <input type="text" id="form3Example4" class="form-control" name='adress'/>
               <label class="form-label" for="form3Example4">Adresse</label>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-              <input type="password" id="form3Example5" class="form-control" />
+              <input type="password" id="form3Example5" class="form-control" name='password'/>
               <label class="form-label" for="form3Example5">Mot de passe</label>
             </div>
 

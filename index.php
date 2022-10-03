@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+require('db.php');
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -28,7 +32,14 @@ session_start();
 
             <div class="logoAccountEtc">
                 <a href="shoppingCard.php"><img class="panier" src="Design/panier.png" alt="panier"></a>
+
+
+                <?php if(isset($_SESSION['connect'])){ ?>
+                <a href="personnalInfo.php"><img src="Design/icons_account.png" alt="account"></a>
+                <a href="disconnect.php"><img src="Design/cross.png" alt=""></a>
+                <?php } else{ ?>
                 <a href="connection.php"><img src="Design/icons_account.png" alt="account"></a>
+                <?php } ?>
             </div>
         </div>
     </header>

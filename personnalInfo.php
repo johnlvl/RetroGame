@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+//connection à la bdd
+require('db.php');
+
+//requête
+$req = $db->query("SELECT * FROM customer");
+
+//récupère les données
+$infoPerso = $req->fetchAll();
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -31,7 +44,10 @@
       <div class="row d-flex justify-content-center">
         <div class="col-lg-8">
           <h2 class="fw-bold mb-5">Information compte</h2>
-          <form>
+
+          <form method="POST" action="personnalInfo.php">
+            <?php foreach($infoPerso as $infoPersos): ?>
+
   <div class="container py-5">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-lg-8">
@@ -42,7 +58,7 @@
                             <p class="mb-0">Nom, prénom</p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0">Johnatan Smith</p>
+                            <p class="text-muted mb-0"><?php echo $infoPersos["first_name"]?></p>
                         </div>
                         </div>
                         <hr>
@@ -88,6 +104,8 @@
                     <button type="button" class="btn btn-light btn-lg">Modifier les informations</button>
                 </div>
         </div>
+        <?php endforeach; ?>
+        </form>
     </div>
   
 </div>

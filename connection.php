@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+require('db.php');
 
 // CONNEXION
 if(!empty($_POST['email']) && !empty($_POST['password'])){
@@ -24,11 +25,11 @@ if(!empty($_POST['email']) && !empty($_POST['password'])){
 			$_SESSION['connect'] = 1;
 			$_SESSION['pseudo']	 = $customer['pseudo'];
 
-			if(isset($_POST['connect'])) {
+			/*if(isset($_POST['connect'])) {
 				setcookie('log', $customer['secret'], time() + 365*24*3600, '/', null, false, true);
-			}
+			}*/
 
-			header('location: connection.php?success=1');
+			header('location: index.php');
 			exit();
 		}
 
@@ -81,22 +82,19 @@ if(!empty($_POST['email']) && !empty($_POST['password'])){
                 if(isset($_GET['error'])){
                   echo'<p id="error">Nous ne pouvons pas vous authentifier.</p>';
                 }
-                else if(isset($_GET['success'])){
-                  echo'<p id="success">Vous êtes maintenant connecté.</p>';
-			          }
 		      ?>
 
           <form method="POST" action="connection.php">
           
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <input type="email" id="form3Example3" class="form-control" />
+              <input type="email" id="form3Example3" class="form-control" name='email'/>
               <label class="form-label" for="form3Example3">Email</label>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-              <input type="password" id="form3Example4" class="form-control" />
+              <input type="password" id="form3Example4" class="form-control" name='password'/>
               <label class="form-label" for="form3Example4">Mot de passe</label>
             </div>
 

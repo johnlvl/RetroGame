@@ -26,7 +26,7 @@ CREATE TABLE IF NO EXISTS seller
 );
 
 /*ARTICLE*/
-CREATE TABLE article 
+CREATE TABLE IF NO EXISTS article 
 ( 
     id INT NOT NULL AUTO_INCREMENT, 
     name VARCHAR(100) NOT NULL, 
@@ -37,14 +37,14 @@ CREATE TABLE article
 );
 
 /*PRICES*/
-CREATE TABLE prices 
+CREATE TABLE IF NO EXISTS prices 
 ( 
     id INT NOT NULL AUTO_INCREMENT, 
     PRIMARY KEY (id)
 );
 
 /*COMMAND*/
-CREATE TABLE command 
+CREATE TABLE IF NO EXISTS command 
 ( 
     id INT NOT NULL AUTO_INCREMENT, 
     statut VARCHAR(20) NOT NULL, 
@@ -54,11 +54,26 @@ CREATE TABLE command
 );
 
 /*CUSTOMER*/
-CREATE TABLE customer 
+CREATE TABLE IF NO EXISTS customer 
 ( 
     id INT NOT NULL AUTO_INCREMENT, 
     first_name VARCHAR(20) NOT NULL, 
     last_name VARCHAR(20) NOT NULL, 
     password TEXT NOT NULL, 
     adress TEXT NOT NULL, 
-    PRIMARY KEY (id))
+    PRIMARY KEY (id)
+);
+
+
+
+/*CUSTOMER*/
+CREATE TABLE IF NO EXISTS customer_account
+(
+    id INT NOT NULL AUTO_INCREMENT, 
+    first_name VARCHAR(20) NOT NULL, 
+    last_name VARCHAR(20) NOT NULL, 
+    phone VARCHAR(10), 
+    adress TEXT NOT NULL, 
+    PRIMARY KEY (id),
+    FOREIGN KEY (customer) REFERENCES id(id)
+);
