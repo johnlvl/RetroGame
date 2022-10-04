@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+//connection à la bdd
+require('db.php');
+
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -34,8 +42,32 @@
             </div>
         
 
+
+
+
+<?php
+if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POST["price"])){
+    if(isset($_POST["name"]) && isset($_POST["product_categorie"]) && isset($_POST["price"])){
+        $name = htmlspecialchars($_POST["name"]);
+        $product_categorie = htmlspecialchars($_POST["product_categorie"]);
+        $price = htmlspecialchars($_POST["price"]);
+        //$filebutton = htmlspecialchars($_POST["filebutton"]);
+
+        //requête
+        $req = $db->prepare("INSERT INTO article (name, platform, price) VALUES (:name, :platform, :price)");
+        //injecte les données
+        $req->bindValue(":name", $name, PDO::PARAM_STR);
+        $req->bindValue(":platform", $product_categorie, PDO::PARAM_STR);
+        $req->bindValue(":price", $price, PDO::PARAM_STR);
+        //exécute la requête
+        $req->execute();
+    } else {
+        echo "Problème";
+    }
+}
+?>
 <!--Ajouter un article-->
-<form>
+<form method="POST" action="adminPanel.php">
 <fieldset>
 
 
@@ -44,21 +76,12 @@
 
 <!-- Text input-->
 
-        
-    <div class="form-group">
-    <label class="col-md-12 control-label" for="product_id">ID du produit</label>  
-    <div class="col-md-12">
-    <input id="product_id" name="product_id" class="form-control input-md" required="" type="text">
-        
-    </div>
-    </div>
-    </div>
 
     <!-- Text input-->
     <div class="form-group">
     <label class="col-md-12 control-label" for="product_name">Nom du produit</label>  
     <div class="col-md-12">
-    <input id="product_name" name="product_name" class="form-control input-md" required="" type="text">
+    <input id="product_name" name="name" class="form-control input-md" type="text">
         
     </div>
     </div>
@@ -67,27 +90,10 @@
 
     <!-- Select Basic -->
     <div class="form-group">
-    <label class="col-md-12 control-label" for="product_categorie">Plateforme</label>
+    <label class="col-md-12 control-label" for="product_name">Plateforme</label>  
     <div class="col-md-12">
-        <select id="product_categorie" name="product_categorie" class="form-control">
-        </select>
-    </div>
-    </div>
-
-    <!-- Text input-->
-    <div class="form-group">
-    <label class="col-md-12 control-label" for="available_quantity">Quantiter en stock</label>  
-    <div class="col-md-12">
-    <input id="available_quantity" name="available_quantity" class="form-control input-md" required="" type="text">
+    <input id="product_name" name="product_categorie" class="form-control input-md" type="text">
         
-    </div>
-    </div>
-
-    <!-- Textarea -->
-    <div class="form-group">
-    <label class="col-md-12 control-label" for="product_name_fr">Description du produit</label>
-    <div class="col-md-12">                     
-        <textarea class="form-control" id="product_name_fr" name="product_name_fr"></textarea>
     </div>
     </div>
 
@@ -96,7 +102,7 @@
     <div class="form-group">
     <label class="col-md-12 control-label" for="price">Prix</label>  
     <div class="col-md-12">
-    <input id="price" name="price" class="form-control input-md" required="" type="text">
+    <input id="price" name="price" class="form-control input-md" type="text">
         
     <!-- File Button --> 
     <div class="form-group">
@@ -109,7 +115,7 @@
     <!-- Button -->
     <div class="form-group">
     <div class="col-md-12">
-        <br><button id="singlebutton" name="singlebutton" class="btn btn-primary">Ajouter</button>
+        <br><button type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary">Ajouter</button>
     </div>
     </div>
 
@@ -122,14 +128,14 @@
         <div class="form-group">
         <label class="col-md-12 control-label" for="product_id">ID du produit</label>  
         <div class="col-md-12">
-        <input id="product_id" name="product_id" class="form-control input-md" required="" type="text">
+        <input id="product_id" name="product_id" class="form-control input-md" type="text">
             
         </div>
         </div>
     <!-- Button -->
         <div class="form-group">
         <div class="col-md-12">
-            <br><button id="singlebutton" name="singlebutton" class="btn btn-primary">Supprimer</button>
+            <br><button type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary">Supprimer</button>
         </div>
         </div><br>
 
@@ -141,26 +147,55 @@
     <div class="form-group">
         <label class="col-md-12 control-label" for="product_id">Message</label>  
         <div class="col-md-12">
-            <input id="message" name="message" class="form-control input-md" required="" type="text">   
+            <textarea id="message" name="message" class="form-control input-md" type="text"></textarea>   
         </div>
         </div>
 
 
 
-        <!--Supprimer un article-->
-    <br><legend>Ajout vendeur</legend>
+
+
+
+
+
+    <?php
     
+    //ajouter seller
+    if(!empty($_POST["sellerFirstName"]) && !empty($_POST["sellerLastName"]) && !empty($_POST["sellerPassword"])){
+        if(isset($_POST["sellerFirstName"]) && isset($_POST["sellerLastName"]) && isset($_POST["sellerPassword"])){
+            $sellerFirstName = htmlspecialchars($_POST["sellerFirstName"]);
+            $sellerLastName = htmlspecialchars($_POST["sellerLastName"]);
+             // Cryptage mdp
+            $sellerPassword = "aq1".sha1($_POST["sellerPassword"]."1254")."25";
+
+            //requête
+            $req = $db->prepare("INSERT INTO seller (first_name, last_name, password) VALUES (:first_name, :last_name, :password)");
+            //injecte les données
+            $req->bindValue(":first_name", $sellerFirstName, PDO::PARAM_STR);
+            $req->bindValue(":last_name", $sellerLastName, PDO::PARAM_STR);
+            $req->bindValue(":password", $sellerPassword, PDO::PARAM_STR);
+            //exécute la requête
+            $req->execute();
+    
+        } else {
+            echo "Problème";
+        }
+       
+        
+    }
+    ?>
+    <br><legend>Ajout vendeur</legend>
    <!-- 2 column grid layout with text inputs for the first and last names -->
    <div class="row">
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <input type="text" id="form3Example1" class="form-control" />
+                  <input type="text" id="form3Example1" class="form-control" name="sellerFirstName"/>
                   <label class="form-label" for="form3Example1">Prénom</label>
                 </div>
               </div>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <input type="text" id="form3Example2" class="form-control" />
+                  <input type="text" id="form3Example2" class="form-control" name="sellerLastName"/>
                   <label class="form-label" for="form3Example2">Nom</label>
                 </div>
               </div>
@@ -168,15 +203,16 @@
 
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <input type="password" id="form3Example3" class="form-control" />
+              <input type="password" id="form3Example3" class="form-control" name="sellerPassword"/>
               <label class="form-label" for="form3Example3">Mot de passe</label>
             </div>
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-              <input type="email" id="form3Example3" class="form-control" />
-              <label class="form-label" for="form3Example3">Email</label>
-            </div>
 
+            <!-- Button -->
+            <div class="form-group">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-light btn-lg">Confirmer le vendeur</button>
+            </div>
+            </div>
 
 
 

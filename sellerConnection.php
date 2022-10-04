@@ -3,10 +3,11 @@ session_start();
 require('db.php');
 
 // CONNEXION
-if(!empty($_POST['email']) && !empty($_POST['password'])){
+if(!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['password'])){
 
 	// VARIABLES
-	$email = $_POST['email'];
+	$first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
 	$password = $_POST['password'];
 	$error = 1;
 
@@ -15,28 +16,28 @@ if(!empty($_POST['email']) && !empty($_POST['password'])){
 
 	echo $password;
 
-	$req = $db->prepare('SELECT * FROM customer WHERE email = ?');
-	$req->execute(array($email));
+	$req = $db->prepare('SELECT * FROM seller WHERE first_name = ?, last_name = ?');
+	$req->execute(array($first_name, $last_name));
 
-	while($customer = $req->fetch()){
+	while($seller = $req->fetch()){
 
-		if($password == $customer['password']){
+		if($password == $seller['password']){
 			$error = 0;
 			$_SESSION['connect'] = 1;
-			$_SESSION['pseudo']	 = $customer['pseudo'];
+			$_SESSION['pseudo']	 = $seller['pseudo'];
 
 			/*if(isset($_POST['connect'])) {
-				setcookie('log', $customer['secret'], time() + 365*24*3600, '/', null, false, true);
+				setcookie('log', $seller['secret'], time() + 365*24*3600, '/', null, false, true);
 			}*/
 
-			header('location: index.php');
+			header('location: sellerPanel.php');
 			exit();
 		}
 
 	}
 
 	if($error == 1){
-		header('location: connection.php?error=1');
+		header('location: sellerConnection.php?error=1');
 		exit();
 	}
 }
@@ -76,7 +77,7 @@ if(!empty($_POST['email']) && !empty($_POST['password'])){
 
       <div class="row d-flex justify-content-center">
         <div class="col-lg-8">
-          <h2 class="fw-bold mb-5">Se connecter</h2>
+          <h2 class="fw-bold mb-5">Vendeur</h2>
 
           <?php
                 if(isset($_GET['error'])){
@@ -86,10 +87,20 @@ if(!empty($_POST['email']) && !empty($_POST['password'])){
 
           <form method="POST" action="connection.php">
           
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-              <input type="email" id="form3Example3" class="form-control" name='email'/>
-              <label class="form-label" for="form3Example3">Email</label>
+            <!-- 2 column grid layout with text inputs for the first and last names -->
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <input type="text" id="form3Example1" class="form-control" name='fist_name' />
+                  <label class="form-label" for="form3Example1">Prénom</label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <input type="text" id="form3Example2" class="form-control" name='last_name'/>
+                  <label class="form-label" for="form3Example2">Nom</label>
+                </div>
+              </div>
             </div>
 
             <!-- Password input -->
@@ -106,8 +117,6 @@ if(!empty($_POST['email']) && !empty($_POST['password'])){
 
             <!-- Register buttons -->
             <div class="text-center">
-              <p>Pas de compte?</p>
-              <a href="register.php">S'inscrire</a><br>
               <br>
               <a href="index.php">Accueil</a>
               
@@ -118,8 +127,7 @@ if(!empty($_POST['email']) && !empty($_POST['password'])){
     </div>
   </div>
 </section>
-<a href="adminConnection.php">Administrateur</a><br>
-<a href="sellerConnection.php">Vendeur</a>
+
 
 </body>
 </html>

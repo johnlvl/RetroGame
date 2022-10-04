@@ -1,56 +1,15 @@
 <?php
 session_start();
 
+//include_once("fonctions-panier.php");
+
 require('db.php');
 
-    //requête
-    $req = $db->prepare("SELECT * FROM article");
-    $req->execute(array());
-        
-
-    //récupère les données
-     $lastRelease = $req->fetchAll();
-        
-    
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="Design/RetroGame_1.png" />
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-    <title>Retro Game</title>
-</head>
-<body>
 
-<!--Header-->
-    <header id="container">
-       <div class="nav">
-            <div class="topLogo">
-            <img src="Design/RetroGame_1.png" alt="logo">
-            </div>
-
-            <div class="searchBar">
-                <input type="text" placeholder="Rechercher...">
-            </div>
-
-            <div class="logoAccountEtc">
-                <a href="shoppingCard.php"><img class="panier" src="Design/panier.png" alt="panier"></a>
-
-
-                <?php if(isset($_SESSION['connect'])){ ?>
-                <a href="personalInfo.php"><img src="Design/icons_account.png" alt="account"></a>
-                <a href="disconnect.php"><img src="Design/cross.png" alt=""></a>
-                <?php } else{ ?>
-                <a href="connection.php"><img src="Design/icons_account.png" alt="account"></a>
-                <?php } ?>
-            </div>
-        </div>
-    </header>
+<?php
+require('header.php');
+?>
 
 <!--NAVBAR-->
     <nav class="navbar navbar-expand-lg" style="background-color: #F5225C;">
@@ -185,13 +144,6 @@ require('db.php');
            
         </div>
 
-            <div class="subTitle">
-                <div class="subTitleh3">
-                    <h3>79.00 €</h3>
-                    <button type="button">Precommander</button>
-                </div>
-            
-            </div>
     </div>
 
 
@@ -200,26 +152,29 @@ require('db.php');
 <!--DERNIERE SORTIE-->
     <div id="titleDerniereSortie">
     
-       
         <h3>DERNIERE SORTIE</h3>
     </div>
+    <form method="post" action="panier.php">
         <div id="derniereSortie">
             
                 <div id="pictureFifa">
                     <img src="Design/Fifa23.jpg" class="rounded float-center" alt="...">
                     <div class="subPicFifa">
                             <div class="priceFifa">
-                                <h3>79.00 €</h3>
-                                <button type="button">Precommander</button>
+                                <h3>79.99</h3>
+                                <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Fifa 23&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
+                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Précommander</a></button>
                             </div>
                     </div>
+                 
                 </div>    
                 <div id="pictureNba">
                     <img src="Design/nba2k23.jpg" class="rounded float-center" alt="...">
                     <div class="subPicNba">
                             <div class="priceFifa">
-                                <h3>79.00 €</h3>
-                                <button type="button">Precommander</button>
+                                <h3>79.99 €</h3>
+                                <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=NBA 2K23&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
+                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Précommander</a></button>
                             </div>
                     </div>
                 </div>    
@@ -227,7 +182,8 @@ require('db.php');
         </div>
         
         
-    </div>
+        </div>
+    </form>
 
 
 <!-- Sous Derniere sortie-->
@@ -240,7 +196,8 @@ require('db.php');
             <figure class="image">
                 <img class="imageItem" src="Design/Nouveaute_1.jpg" alt="">
                 <figcaption class="image-description">79.99 €</figcaption>
-                <button type="button">Acheter</button>
+                <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Session&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
+                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Acheter</a></button>
             </figure>
         </div>
 
@@ -248,15 +205,17 @@ require('db.php');
         <figure class="image">
             <img class="imageItem" src="Design/Nouveaute_2.jpg" alt="">
             <figcaption class="image-description">79.99 €</figcaption>
-            <button type="button">Acheter</button>
+            <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Stray&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
+                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Acheter</a></button>
         </figure>
         </div>
 
         <div class="images">
         <figure class="image">
             <img class="imageItem" src="Design/Nouveaute_3.jpg" alt="">
-            <figcaption class="image-description">79.99 €</figcaption>
-            <button type="button">Acheter</button>
+            <figcaption class="image-description">69.99 €</figcaption>
+            <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Splatoon 3&amp;quantity=1&amp;price=69.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
+                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Acheter</a></button>
         </figure>
         </div>
 
@@ -264,15 +223,17 @@ require('db.php');
         <figure class="image">
             <img class="imageItem" src="Design/Nouveaute_4.jpg" alt="">
             <figcaption class="image-description">79.99 €</figcaption>
-            <button type="button">Acheter</button>
+            <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=SteeelRising&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
+                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Acheter</a></button>
         </figure>
         </div>
 
         <div class="images">
         <figure class="image">
             <img class="imageItem" src="Design/Nouveaute_5.jpg" alt="">
-            <figcaption class="image-description">79.99 €</figcaption>
-            <button type="button">Acheter</button>
+            <figcaption class="image-description">69.99 €</figcaption>
+            <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Made in Abyss&amp;quantity=1&amp;price=69.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
+                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Acheter</a></button>
         </figure>
         </div>
 
@@ -292,7 +253,8 @@ require('db.php');
         <figure class="imageTopVente">
             <img class="imageItem" src="Design/Top_1.jpg" alt="">
             <figcaption class="image-description">79.99 €</figcaption>
-            <button type="button">Précommander</button>
+            <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=God of War Ragnarok&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
+                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Précommander</a></button>
         </figure>
         </div>
 
@@ -300,7 +262,8 @@ require('db.php');
         <figure class="imageTopVente">
             <img class="imageItem" src="Design/Top_2.png" alt="">
             <figcaption class="image-description">79.99 €</figcaption>
-            <button type="button">Acheter</button>
+            <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Fifa 23&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
+                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Acheter</a></button>
         </figure>
         </div>
 
@@ -308,7 +271,8 @@ require('db.php');
         <figure class="imageTopVente">
             <img class="imageItem" src="Design/Top_3.jpg" alt="">
             <figcaption class="image-description">79.99 €</figcaption>
-            <button type="button">Précommander</button>
+            <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Hogwarts Legacy&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
+                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Précommander</a></button>
         </figure>
         </div>
 
@@ -316,7 +280,8 @@ require('db.php');
         <figure class="imageTopVente">
             <img class="imageItem" src="Design/Top_4.webp" alt="">
             <figcaption class="image-description">79.99 €</figcaption>
-            <button type="button">Précommander</button>
+            <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Assassin's creed Mirage&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
+                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Précommander</a></button>
         </figure>
         </div>
 
@@ -324,7 +289,8 @@ require('db.php');
         <figure class="imageTopVente">
             <img class="imageItem" src="Design/Top_5.jpg" alt="">
             <figcaption class="image-description">79.99 €</figcaption>
-            <button type="button">Précommander</button>
+            <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Call of Duty MW2&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
+                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Précommander</a></button>
         </figure>
         </div>
     </div>
@@ -338,30 +304,7 @@ require('db.php');
 
 
 <!--FOOTER-->
-<div class="footer-basic">
-        <footer>
-            <div class="social">
-                <a href="#"><i class="icon ion-social-instagram"></i></a>
-                <a href="#"><i class="icon ion-social-snapchat"></i></a>
-                <a href="#"><i class="icon ion-social-twitter"></i></a>
-                <a href="#"><i class="icon ion-social-facebook"></i></a>
-            </div>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">Home</a></li>
-                <li class="list-inline-item"><a href="#">Contact</a></li>
-                <li class="list-inline-item"><a href="#">About</a></li>
-                <li class="list-inline-item"><a href="#">Terms</a></li>
-                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-            </ul>
-            <p class="copyright">Retro Game © 2022</p>
-        </footer>
-    </div>
-   
 
-
-
-
-
-
-</body>
-</html>
+<?php
+require('footer.php')
+?>

@@ -13,7 +13,7 @@
 <body>
 
 <!--Header-->
-    <header id="container">
+<header id="container">
        <div class="nav">
             <div class="topLogo">
             <img src="Design/RetroGame_1.png" alt="logo">
@@ -24,13 +24,18 @@
             </div>
 
             <div class="logoAccountEtc">
-                <img class="panier" src="Design/panier.png" href="#" alt="panier">
-                <img src="Design/icons_account.png" href="#" alt="account">
-                <img src="Design/icons_account+.png" href="#" alt="newAccount">
+                <a href="shoppingCard.php"><img class="panier" src="Design/panier.png" alt="panier"></a>
+
+
+                <?php if(isset($_SESSION['connect'])){ ?>
+                <a href="personalInfo.php"><img src="Design/icons_account.png" alt="account"></a>
+                <a href="disconnect.php"><img src="Design/cross.png" alt=""></a>
+                <?php } else{ ?>
+                <a href="connection.php"><img src="Design/icons_account.png" alt="account"></a>
+                <?php } ?>
             </div>
         </div>
     </header>
-
 
 
 
