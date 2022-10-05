@@ -51,6 +51,7 @@ if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POS
         $name = htmlspecialchars($_POST["name"]);
         $product_categorie = htmlspecialchars($_POST["product_categorie"]);
         $price = htmlspecialchars($_POST["price"]);
+
         //$filebutton = htmlspecialchars($_POST["filebutton"]);
 
         //requête
@@ -59,6 +60,7 @@ if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POS
         $req->bindValue(":name", $name, PDO::PARAM_STR);
         $req->bindValue(":platform", $product_categorie, PDO::PARAM_STR);
         $req->bindValue(":price", $price, PDO::PARAM_STR);
+        
         //exécute la requête
         $req->execute();
     } else {
@@ -90,9 +92,9 @@ if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POS
 
     <!-- Select Basic -->
     <div class="form-group">
-    <label class="col-md-12 control-label" for="product_name">Plateforme</label>  
+    <label class="col-md-12 control-label" for="product_categorie">Plateforme</label>  
     <div class="col-md-12">
-    <input id="product_name" name="product_categorie" class="form-control input-md" type="text">
+    <input id="product_categorie" name="product_categorie" class="form-control input-md" type="text">
         
     </div>
     </div>
@@ -103,6 +105,12 @@ if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POS
     <label class="col-md-12 control-label" for="price">Prix</label>  
     <div class="col-md-12">
     <input id="price" name="price" class="form-control input-md" type="text">
+
+    <!-- Text input-->
+    <div class="form-group">
+    <label class="col-md-12 control-label" for="date">Date d'ajout</label>  
+    <div class="col-md-12">
+    <input id="price" name="dateAdd" class="form-control input-md" type="text">
         
     <!-- File Button --> 
     <div class="form-group">
@@ -121,14 +129,29 @@ if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POS
 
     </fieldset>
     
-    <!--Supprimer un article-->
+
+
+<!--Supprimer un article-->
+    <?php
+    if(!empty($_POST["delete"])){
+        if(isset($_POST["delete"])){
+            $delete = htmlspecialchars($_POST["delete"]);
+    
+            //requête
+            $req = $db->prepare("DELETE FROM article WHERE name = ?");
+
+            //exécute la requête
+            $req->execute(array($_POST['delete']));
+        }
+    }
+    ?>
     <br><legend>Supprimer un article</legend>
     
     <!-- Text input-->
         <div class="form-group">
-        <label class="col-md-12 control-label" for="product_id">ID du produit</label>  
+        <label class="col-md-12 control-label" for="delete">ID du produit</label>  
         <div class="col-md-12">
-        <input id="product_id" name="product_id" class="form-control input-md" type="text">
+        <input id="product_id" name="delete" class="form-control input-md" type="text">
             
         </div>
         </div>
@@ -138,6 +161,10 @@ if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POS
             <br><button type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary">Supprimer</button>
         </div>
         </div><br>
+
+
+
+
 
 
 
@@ -157,10 +184,8 @@ if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POS
 
 
 
-
+<!-- ajouter seller -->
     <?php
-    
-    //ajouter seller
     if(!empty($_POST["sellerFirstName"]) && !empty($_POST["sellerLastName"]) && !empty($_POST["sellerPassword"])){
         if(isset($_POST["sellerFirstName"]) && isset($_POST["sellerLastName"]) && isset($_POST["sellerPassword"])){
             $sellerFirstName = htmlspecialchars($_POST["sellerFirstName"]);
@@ -180,8 +205,6 @@ if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POS
         } else {
             echo "Problème";
         }
-       
-        
     }
     ?>
     <br><legend>Ajout vendeur</legend>

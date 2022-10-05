@@ -18,7 +18,6 @@ $req->execute(array($email));
 
 
 while($email_verification = $req->fetch()){
-  $step = 'step six';
     if($email_verification['numberEmail'] != 0){
         header('location: register.php/?error=1&email=1');
     }
@@ -36,7 +35,7 @@ $password = "aq1".sha1($password."1254")."25";
 $req = $db->prepare("INSERT INTO customer (first_name, last_name, email, password, adress, secret) VALUE (?, ?, ?, ?, ?, ?)");
 $req->execute(array($firstName, $lastName, $email, $password, $adress, $secret));
 
-header('location: register.php/?success=1');
+header('location: index.php');
 
 
 }
@@ -77,7 +76,6 @@ header('location: register.php/?success=1');
           <h2 class="fw-bold mb-5">S'inscrire maintenant</h2>
 
           <?php
-          echo $step;
               if(isset($_GET['error'])){
                   if(isset($_GET['email'])){
                       echo '<p id="error">Cette adresse email est déjà utilisé.</p>';

@@ -81,14 +81,7 @@ $infoPerso = $req->fetchAll();
                         </div>
                         </div>
                         <hr>
-                        <div class="row">
-                        <div class="col-sm-3">
-                            <p class="mb-0">Téléphone Mobile</p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="text-muted mb-0"><?php echo $infoPersos["phone"]?></p>
-                        </div>
-                        </div>
+                        
                         <hr>
                         <div class="row">
                         <div class="col-sm-3">
@@ -145,10 +138,7 @@ $lastCommand = $req->fetchAll();
           <div class="card-body p-4">
 
             <div class="row align-items-center">
-              <div class="col-md-2">
-                <img src="Design/Top_1.jpg"
-                  class="img-fluid" alt="Generic placeholder image">
-              </div>
+              
               <div class="col-md-2 d-flex justify-content-center">
                 <div>
                   <p class="small text-muted mb-4 pb-2">Nom</p>
@@ -158,25 +148,13 @@ $lastCommand = $req->fetchAll();
               <div class="col-md-2 d-flex justify-content-center">
                 <div>
                   <p class="small text-muted mb-4 pb-2">Plateforme</p>
-                  <p class="lead fw-normal mb-0">PS5</p>
-                </div>
-              </div>
-              <div class="col-md-2 d-flex justify-content-center">
-                <div>
-                  <p class="small text-muted mb-4 pb-2">Quantiter</p>
-                  <p class="lead fw-normal mb-0">1</p>
+                  <p class="lead fw-normal mb-0"><?php echo $lastCommands["platform"]?></p>
                 </div>
               </div>
               <div class="col-md-2 d-flex justify-content-center">
                 <div>
                   <p class="small text-muted mb-4 pb-2">Prix</p>
-                  <p class="lead fw-normal mb-0">79.99€</p>
-                </div>
-              </div>
-              <div class="col-md-2 d-flex justify-content-center">
-                <div>
-                  <p class="small text-muted mb-4 pb-2">Total</p>
-                  <p class="lead fw-normal mb-0">79.99€</p>
+                  <p class="lead fw-normal mb-0"><?php echo $lastCommands["price"]?></p>
                 </div>
               </div>
             </div>
@@ -190,7 +168,7 @@ $lastCommand = $req->fetchAll();
             <div class="float-end">
               <p class="mb-0 me-5 d-flex align-items-center">
                 <span class="small text-muted me-2">Total commande:</span> <span
-                  class="lead fw-normal">79.99€</span>
+                  class="lead fw-normal"><?php echo $lastCommands["price"]?></span>
               </p>
             </div>
 

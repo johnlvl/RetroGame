@@ -7,7 +7,7 @@ if(!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST[
 
 	// VARIABLES
 	$first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
+  $last_name = $_POST['last_name'];
 	$password = $_POST['password'];
 	$error = 1;
 
@@ -16,7 +16,7 @@ if(!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST[
 
 	echo $password;
 
-	$req = $db->prepare('SELECT * FROM seller WHERE first_name = ?, last_name = ?');
+	$req = $db->prepare('SELECT * FROM admin WHERE first_name = ?, last_name = ?');
 	$req->execute(array($first_name, $last_name));
 
 	while($admin = $req->fetch()){
@@ -85,7 +85,7 @@ if(!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST[
                 }
 		      ?>
 
-          <form method="POST" action="connection.php">
+          <form method="POST" action="adminPanel.php">
           
             <!-- 2 column grid layout with text inputs for the first and last names -->
             <div class="row">

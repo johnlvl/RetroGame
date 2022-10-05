@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+//connection à la bdd
+require('db.php');
+
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -35,8 +43,31 @@
         </div>
        </div>
 
+<?php
+    if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POST["price"])){
+        if(isset($_POST["name"]) && isset($_POST["product_categorie"]) && isset($_POST["price"])){
+            $name = htmlspecialchars($_POST["name"]);
+            $product_categorie = htmlspecialchars($_POST["product_categorie"]);
+            $price = htmlspecialchars($_POST["price"]);
+
+            //$filebutton = htmlspecialchars($_POST["filebutton"]);
+
+            //requête
+            $req = $db->prepare("INSERT INTO article (name, platform, price) VALUES (:name, :platform, :price)");
+            //injecte les données
+            $req->bindValue(":name", $name, PDO::PARAM_STR);
+            $req->bindValue(":platform", $product_categorie, PDO::PARAM_STR);
+            $req->bindValue(":price", $price, PDO::PARAM_STR);
+            
+            //exécute la requête
+            $req->execute();
+        } else {
+            echo "Problème";
+        }
+}
+?>
 <!--Ajouter un article-->
-<form>
+<form method="POST" action="sellerPanel.php">
 <fieldset>
 
 
@@ -47,58 +78,30 @@
 <div class="row">
 <div class="col-md-6 mb-4">
         
-    <div class="form-group">
-    <label class="col-md-4 control-label" for="product_id">ID du produit</label>  
-    <div class="col-md-4">
-    <input id="product_id" name="product_id" class="form-control input-md" required="" type="text">
-        
-    </div>
-    </div>
-    </div>
-
+    
     <!-- Text input-->
     <div class="form-group">
-    <label class="col-md-4 control-label" for="product_name">Nom du produit</label>  
+    <label class="col-md-4 control-label" for="name">Nom du produit</label>  
     <div class="col-md-4">
-    <input id="product_name" name="product_name" class="form-control input-md" required="" type="text">
+    <input id="name" name="name" class="form-control input-md" type="text">
         
     </div>
     </div>
-
-
 
     <!-- Select Basic -->
     <div class="form-group">
     <label class="col-md-4 control-label" for="product_categorie">Plateforme</label>
     <div class="col-md-4">
-        <select id="product_categorie" name="product_categorie" class="form-control">
-        </select>
-    </div>
-    </div>
-
-    <!-- Text input-->
-    <div class="form-group">
-    <label class="col-md-4 control-label" for="available_quantity">Quantiter en stock</label>  
-    <div class="col-md-4">
-    <input id="available_quantity" name="available_quantity" class="form-control input-md" required="" type="text">
+    <input id="product_categorie" name="product_categorie" class="form-control input-md" type="text">
         
     </div>
     </div>
-
-    <!-- Textarea -->
-    <div class="form-group">
-    <label class="col-md-4 control-label" for="product_name_fr">Description du produit</label>
-    <div class="col-md-4">                     
-        <textarea class="form-control" id="product_name_fr" name="product_name_fr"></textarea>
-    </div>
-    </div>
-
 
     <!-- Text input-->
     <div class="form-group">
     <label class="col-md-4 control-label" for="price">Prix</label>  
     <div class="col-md-4">
-    <input id="price" name="price" class="form-control input-md" required="" type="text">
+    <input id="price" name="price" class="form-control input-md" type="text">
         
     <!-- File Button --> 
     <div class="form-group">
@@ -111,20 +114,41 @@
     <!-- Button -->
     <div class="form-group">
     <div class="col-md-4">
-        <br><button id="singlebutton" name="singlebutton" class="btn btn-primary">Ajouter</button>
+        <br><button type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary">Ajouter</button>
     </div>
     </div>
 
     </fieldset>
+
+
+
+
+
+
+
+
     
     <!--Supprimer un article-->
+    <?php
+    if(!empty($_POST["delete"])){
+        if(isset($_POST["delete"])){
+            $delete = htmlspecialchars($_POST["delete"]);
+    
+            //requête
+            $req = $db->prepare("DELETE FROM article WHERE name = ?");
+
+            //exécute la requête
+            $req->execute(array($_POST['delete']));
+        }
+    }
+    ?>
     <br><legend>Supprimer un article</legend>
     
     <!-- Text input-->
         <div class="form-group">
-        <label class="col-md-4 control-label" for="product_id">ID du produit</label>  
+        <label class="col-md-4 control-label" for="delete">Nom du produit</label>  
         <div class="col-md-4">
-        <input id="product_id" name="product_id" class="form-control input-md" required="" type="text">
+        <input id="delete" name="delete" class="form-control input-md" type="text">
             
         </div>
         </div>
@@ -136,9 +160,10 @@
         </div>
 
 
-
-
+        <br><a href="index.php">Accueil</a>
         </div>
+
+        
 </form>
 </body>
 </html>
