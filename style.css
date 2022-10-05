@@ -338,6 +338,73 @@ header{
 
 
   
-  @media only screen and (min-width: 600px) {
+  @media(max-width: 600px) {
+    /*HEADER*/
+    header{
+        background-image: url(Design/RetroGame.png);
+        height: 150px;
+    }
+    #container .topLogo{
+        visibility: hidden;
+    }
+    #container .searchBar input{
+        position: absolute;
+        top: 20px;
+        left: 40px;
+        width: 300px;
+    }
+    #container .logoAccountEtc{
+        position: absolute;
+        top: 100px;
+    }
+
+
+
+
+
+    /*NAVBAR*/
+    nav .navbar .container{
+        width: 100px;
+    }
+
+
+
+
+
+
     
+    /*Prochaine sortie attendu*/
+    #carouselExampleCaptions{
+        width: 100%;
+    }
+    
+
+
+
+    /*DERNIERE SORTIE*/
+    #derniereSortie{
+        display: flex;
+        flex-direction: column;
+    }
+    #pictureFifa{
+        position: relative;
+        margin-left: 70px;
+        width: 150%;
+    }
+    #pictureFifa .priceFifa{
+        margin-left: -40px;
+    }
+    #pictureNba{
+        margin-left: 70px;
+        width: 100%;
+    }
+    #pictureNba .priceFifa{
+        margin-left: -100px;
+    }
+
+
+    #sousDernierSortie .image{
+        visibility: hidden;
+    }
   }
+
