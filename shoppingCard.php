@@ -90,14 +90,14 @@ if (!$erreur){
 
 
 <form method="post" action="shoppingCard.php">
-<table style="width: 400px">
+<table class="tableShopping" style="width: 400px">
     <tr>
-        <td colspan="4">Votre panier</td>
+        <td colspan="4"></td>
     </tr>
     <tr>
         <td>Nom</td>
         <td>Quantité</td>
-        <td>Prix Unitaire</td>
+        <td>Prix</td>
         <td></td>
     </tr>
 

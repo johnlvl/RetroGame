@@ -333,13 +333,18 @@ header{
     color: #F5225C;
 }
 
+/*PANIER*/
+.tableShopping{
+    color: #F5225C;
+}
 
 
 
 
-  
+
+  /*HEADER*/
   @media(max-width: 600px) {
-    /*HEADER*/
+    
     header{
         background-image: url(Design/RetroGame.png);
         height: 150px;
@@ -360,15 +365,17 @@ header{
 
 
 
-
-
     /*NAVBAR*/
-    nav .navbar .container{
-        width: 100px;
+    .navbar{
+        margin-left: 20px;
+        width: 330px;
+        height: 110px;
     }
-
-
-
+    .navbar .nav-link{
+        width: 140px;
+    }
+    
+        
 
 
 
@@ -403,8 +410,48 @@ header{
     }
 
 
-    #sousDernierSortie .image{
-        visibility: hidden;
+    #sousDerniereSortie .images{
+        display: none;
     }
-  }
+    #sousDerniereSortie .images1{
+        margin-left: 70px;
+    }
+    #sousDerniereSortie .images1 figcaption{
+        margin-left: 90px;
+    }
+    #sousDerniereSortie .images1 button{
+        margin-left: 80px;
+    }
 
+
+    /*TOP VENTES*/
+    #topVente .imagesTopVente{
+        display: none;
+    }
+    #topVente .imagesTopVente1{
+        margin-left: 30px;
+    }
+    #topVente .imagesTopVente1 figcaption{
+        margin-left: 130px;
+    }
+    #topVente .imagesTopVente1 button{
+        margin-left: 90px;
+    }
+
+
+
+    /*PANIER*/
+    .tableShopping{
+        color: #F5225C;
+        font-size: 0.8em;
+        margin-left: -75px;
+        text-align: center;
+    }
+    .d-flex button{
+        margin-top: 40px;
+        font-size: 0.7em;
+        padding: 5px;
+        width: 100px;
+        height: 40px;
+    }
+    }

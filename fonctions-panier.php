@@ -29,7 +29,7 @@ function ajouterArticle($name,$quantity,$price){
    if (!isVerrouille() && isset($_SESSION['panier']['name']))
    {
       //Si le produit existe déjà on ajoute seulement la quantité
-      $positionProduit = array_search($name,  $_SESSION['panier']['name']);
+      $positionProduit = array_search($name, $_SESSION['panier']['name']);
 
       if ($positionProduit !== false)
       {

@@ -2,13 +2,14 @@
 require('db.php');
 
 
-if(!empty($_POST['fist_name']) && !empty($_POST['last_name']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['adress'])){
+if(!empty($_POST['fist_name']) && !empty($_POST['last_name']) && !empty($_POST['email']) && !empty($_POST['adress']) && !empty($_POST['phone']) && !empty($_POST['password'])){
 
     $firstName = $_POST['fist_name'];
     $lastName = $_POST['last_name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $adress = $_POST['adress'];
+    $phone = $_POST['phone'];
    
     
 // test si email deja utilisé
@@ -23,19 +24,15 @@ while($email_verification = $req->fetch()){
     }
 }
 
-// Secret
-$secret = sha1($email).time();
-$secret = sha1($secret).time().time();
-
 // Cryptage mdp
 $password = "aq1".sha1($password."1254")."25";
 
 
 // Envoie de la requete
-$req = $db->prepare("INSERT INTO customer (first_name, last_name, email, password, adress, secret) VALUE (?, ?, ?, ?, ?, ?)");
-$req->execute(array($firstName, $lastName, $email, $password, $adress, $secret));
+$req = $db->prepare("INSERT INTO customer (first_name, last_name, email, password, phone, adress) VALUE (?, ?, ?, ?, ?, ?)");
+$req->execute(array($firstName, $lastName, $email, $password, $phone, $adress));
 
-header('location: index.php');
+header('location: connection.php');
 
 
 }
@@ -115,6 +112,12 @@ header('location: index.php');
             <div class="form-outline mb-4">
               <input type="text" id="form3Example4" class="form-control" name='adress'/>
               <label class="form-label" for="form3Example4">Adresse</label>
+            </div>
+
+            <!-- Adress input -->
+            <div class="form-outline mb-4">
+              <input type="text" id="form3Example4" class="form-control" name='phone'/>
+              <label class="form-label" for="form3Example4">Téléphone</label>
             </div>
 
             <!-- Password input -->
