@@ -29,7 +29,7 @@ if(!empty($_POST['email']) && !empty($_POST['password'])){
 				setcookie('log', $customer['secret'], time() + 365*24*3600, '/', null, false, true);
 			}*/
 
-			header('location: index.php');
+			header('location: index.php?success=1');
 			exit();
 		}
 

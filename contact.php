@@ -2,6 +2,19 @@
 session_start();
 
 require("db.php");
+
+if(isset($_POST['email']) && isset($_POST['message_type']) && isset($_POST['message_send'])){
+  $email = $_POST['email'];
+  $messageType = $_POST['message_type'];
+  $message = $_POST['message_send'];
+
+  //prépare la requête
+  $req = $db->prepare('INSERT INTO message_contact (email, message_type, message_send) VALUES (?, ?, ?)');
+  $req->execute(array($email, $messageType, $message));
+
+  header('location: contact.php?success=send');
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,9 +52,52 @@ require("db.php");
         <div class="col-lg-8">
           <h2 class="fw-bold mb-5">Contact</h2>
 
+          <?php
+            if(isset($_GET['success'])){
+              echo '<p id="success">Message envoyé.</p>';
+            }
+          ?>
          
-          <form method="POST" action="register.php">
+          <form method="POST" action="contact.php">
             
+            <!-- Email input -->
+                  <div class="form-outline mb-4">
+                    <input type="text" id="form3Example3" class="form-control" name='email'/>
+                    <label class="form-label" for="form3Example3">Email</label>
+                    </div>
+
+            <!-- Password input -->
+                  <div class="form-outline mb-4">
+                    <input type="text" id="form3Example4" class="form-control" name='message_type'/>
+                    <label class="form-label" for="form3Example4">Intituler de la demande</label>
+                  </div>
+
+
+            <!--Message-->
+                  <div class="form-group">
+                    <label class="col-md-12 control-label" for="product_id">Message</label>  
+                    <div class="col-md-12">
+                        <textarea id="message" name="message_send" class="form-control input-md" type="text"></textarea>   
+                    </div>
+                  </div><br>
+
+                        
+            <!-- Submit button -->
+                  <button type="submit" class="btn btn-primary btn-block mb-4">
+                    Envoyer
+                  </button>
+
+            <!-- Register buttons -->
+                  <div class="text-center">
+                    
+                    <a href="index.php">Accueil</a>
+                  </div>
+
+
+
+
+
+              
           </form>
         </div>
       </div>

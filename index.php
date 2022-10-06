@@ -1,13 +1,10 @@
 <?php
 session_start();
-
-
-require('db.php');
-
+    require('db.php');
 ?>
 
 <?php
-require('header.php');
+    require('header.php');
 ?>
 
 <!--NAVBAR-->

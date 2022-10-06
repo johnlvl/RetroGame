@@ -167,75 +167,80 @@ if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POS
 
 
 
-
-<!-- Form Name -->
-    <legend>Message</legend>
-<!-- Text input-->
-    <div class="form-group">
-        <label class="col-md-12 control-label" for="product_id">Message</label>  
-        <div class="col-md-12">
-            <textarea id="message" name="message" class="form-control input-md" type="text"></textarea>   
-        </div>
-        </div>
-
-
-
-
-
-
-
-<!-- ajouter seller -->
     <?php
-    if(!empty($_POST["sellerFirstName"]) && !empty($_POST["sellerLastName"]) && !empty($_POST["sellerPassword"])){
-        if(isset($_POST["sellerFirstName"]) && isset($_POST["sellerLastName"]) && isset($_POST["sellerPassword"])){
-            $sellerFirstName = htmlspecialchars($_POST["sellerFirstName"]);
-            $sellerLastName = htmlspecialchars($_POST["sellerLastName"]);
-             // Cryptage mdp
-            $sellerPassword = "aq1".sha1($_POST["sellerPassword"]."1254")."25";
+        $req = $db->query("SELECT * FROM message_contact");
+        $messageSend = $req->fetchAll();
 
-            //requête
-            $req = $db->prepare("INSERT INTO seller (first_name, last_name, password) VALUES (:first_name, :last_name, :password)");
-            //injecte les données
-            $req->bindValue(":first_name", $sellerFirstName, PDO::PARAM_STR);
-            $req->bindValue(":last_name", $sellerLastName, PDO::PARAM_STR);
-            $req->bindValue(":password", $sellerPassword, PDO::PARAM_STR);
-            //exécute la requête
-            $req->execute();
-    
-        } else {
-            echo "Problème";
-        }
-    }
+        foreach($messageSend as $messageSends):
     ?>
-    <br><legend>Ajout vendeur</legend>
-   <!-- 2 column grid layout with text inputs for the first and last names -->
-   <div class="row">
-              <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                  <input type="text" id="form3Example1" class="form-control" name="sellerFirstName"/>
-                  <label class="form-label" for="form3Example1">Prénom</label>
-                </div>
-              </div>
-              <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                  <input type="text" id="form3Example2" class="form-control" name="sellerLastName"/>
-                  <label class="form-label" for="form3Example2">Nom</label>
-                </div>
-              </div>
-            </div>
-
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-              <input type="password" id="form3Example3" class="form-control" name="sellerPassword"/>
-              <label class="form-label" for="form3Example3">Mot de passe</label>
-            </div>
-
-            <!-- Button -->
-            <div class="form-group">
+    <!-- Form Name -->
+        <legend>Message</legend>
+    <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-12 control-label" for="product_id">Message</label>  
             <div class="col-md-12">
-                <button type="submit" class="btn btn-light btn-lg">Confirmer le vendeur</button>
+                <textarea id="message" name="message" class="form-control input-md" type="text"><?php echo $messageSends["email"]?> Vous a envoyer un message <?php echo $messageSends["message_send"]?></textarea>   
             </div>
             </div>
+            <?php endforeach; ?>
+
+
+
+
+
+
+    <!-- ajouter seller -->
+        <?php
+        if(!empty($_POST["sellerFirstName"]) && !empty($_POST["sellerLastName"]) && !empty($_POST["sellerPassword"])){
+            if(isset($_POST["sellerFirstName"]) && isset($_POST["sellerLastName"]) && isset($_POST["sellerPassword"])){
+                $sellerFirstName = htmlspecialchars($_POST["sellerFirstName"]);
+                $sellerLastName = htmlspecialchars($_POST["sellerLastName"]);
+                // Cryptage mdp
+                $sellerPassword = "aq1".sha1($_POST["sellerPassword"]."1254")."25";
+
+                //requête
+                $req = $db->prepare("INSERT INTO seller (first_name, last_name, password) VALUES (:first_name, :last_name, :password)");
+                //injecte les données
+                $req->bindValue(":first_name", $sellerFirstName, PDO::PARAM_STR);
+                $req->bindValue(":last_name", $sellerLastName, PDO::PARAM_STR);
+                $req->bindValue(":password", $sellerPassword, PDO::PARAM_STR);
+                //exécute la requête
+                $req->execute();
+        
+            } else {
+                echo "Problème";
+            }
+        }
+        ?>
+        <br><legend>Ajout vendeur</legend>
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+    <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                    <input type="text" id="form3Example1" class="form-control" name="sellerFirstName"/>
+                    <label class="form-label" for="form3Example1">Prénom</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                    <input type="text" id="form3Example2" class="form-control" name="sellerLastName"/>
+                    <label class="form-label" for="form3Example2">Nom</label>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                <input type="password" id="form3Example3" class="form-control" name="sellerPassword"/>
+                <label class="form-label" for="form3Example3">Mot de passe</label>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-light btn-lg">Confirmer le vendeur</button>
+                </div>
+                </div>
 
 
 
