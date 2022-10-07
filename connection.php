@@ -109,7 +109,9 @@ if(!empty($_POST['email']) && !empty($_POST['password'])){
               <p>Pas de compte?</p>
               <a href="register.php">S'inscrire</a><br>
               <br>
-              <a href="index.php">Accueil</a>
+              <a href="index.php">Accueil</a><br>
+              <br><a href="adminConnection.php">Administrateur</a><br>
+              <a href="sellerConnection.php">Vendeur</a>
               
             </div>
           </form>
@@ -118,8 +120,7 @@ if(!empty($_POST['email']) && !empty($_POST['password'])){
     </div>
   </div>
 </section>
-<a href="adminConnection.php">Administrateur</a><br>
-<a href="sellerConnection.php">Vendeur</a>
+
 
 </body>
 </html>

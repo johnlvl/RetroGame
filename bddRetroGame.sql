@@ -69,6 +69,8 @@ CREATE TABLE IF NO EXISTS last_command
 (
     id INT NOT NULL AUTO_INCREMENT, 
     name VARCHAR(20) NOT NULL, 
+    platform VARCHAR(20),
+    price FLOAT,
     date_command DATE, 
     customer_id INT,
     command_id INT,
@@ -82,7 +84,7 @@ CREATE TABLE IF NO EXISTS message_contact
 (
     id INT NOT NULL AUTO_INCREMENT,
     email TEXT NOT NULL,
-    message_type TEXT;
+    message_type TEXT,
     message_send TEXT,
     PRIMARY KEY (id)
 );

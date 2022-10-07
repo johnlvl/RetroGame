@@ -167,22 +167,25 @@ if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POS
 
 
 
-    <?php
-        $req = $db->query("SELECT * FROM message_contact");
-        $messageSend = $req->fetchAll();
-
-        foreach($messageSend as $messageSends):
-    ?>
+    
     <!-- Form Name -->
         <legend>Message</legend>
     <!-- Text input-->
         <div class="form-group">
+        <?php
+        
+
+        $req = $db->query("SELECT * FROM message_contact");
+        $messageSend = $req->fetchAll();
+
+        foreach($messageSend as $messageSends):
+        ?>
             <label class="col-md-12 control-label" for="product_id">Message</label>  
             <div class="col-md-12">
-                <textarea id="message" name="message" class="form-control input-md" type="text"><?php echo $messageSends["email"]?> Vous a envoyer un message <?php echo $messageSends["message_send"]?></textarea>   
+                <p id="message" name="message" class="form-control input-md" type="text"><?php echo $messageSends["email"]?> <strong>Vous a envoyer un message : </strong> <?php echo $messageSends["message_send"]?></p>   
             </div>
             </div>
-            <?php endforeach; ?>
+            <?php endforeach ?>
 
 
 

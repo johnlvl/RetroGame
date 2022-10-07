@@ -346,7 +346,7 @@ header{
   @media(max-width: 600px) {
     
     header{
-        background-image: url(Design/RetroGame.png);
+        background-color: #395B64;
         height: 150px;
     }
     #container .topLogo{

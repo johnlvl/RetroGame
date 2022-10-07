@@ -127,7 +127,13 @@ $lastCommand = $req->fetchAll();
 
           
           <form method="POST" action="personnalInfo.php">
-          <?php foreach($lastCommand as $lastCommands): ?>
+          <?php 
+          //requête
+          $req = $db->query("SELECT * FROM last_command");
+          //récupère les données
+          $lastCommand = $req->fetchAll();
+          foreach($lastCommand as $lastCommands): 
+          ?>
 
 <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -142,7 +148,7 @@ $lastCommand = $req->fetchAll();
               <div class="col-md-2 d-flex justify-content-center">
                 <div>
                   <p class="small text-muted mb-4 pb-2">Nom</p>
-                  <p class="lead fw-normal mb-0"><?php echo $lastCommands["name"]?></p>
+                  <p class="lead fw-normal mb-0" name="name"><?php echo $lastCommands["name"]?></p>
                 </div>
               </div>
               <div class="col-md-2 d-flex justify-content-center">
