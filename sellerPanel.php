@@ -48,7 +48,7 @@ require('db.php');
 <?php
 if(isset($_SESSION['connect'])){
         if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POST["price"])){
-            // if(isset($_POST["name"]) && isset($_POST["product_categorie"]) && isset($_POST["price"])){
+
                 $name = htmlspecialchars($_POST["name"]);
                 $product_categorie = htmlspecialchars($_POST["product_categorie"]);
                 $price = htmlspecialchars($_POST["price"]);
@@ -66,7 +66,7 @@ if(isset($_SESSION['connect'])){
                 //exécute la requête
                 $req->execute();
                 
-            // }
+            
         }
 }
 ?>
@@ -100,15 +100,6 @@ if(isset($_SESSION['connect'])){
         
     </div>
     </div>
-
-    <!-- Text input
-    <div class="form-group">
-    <label class="col-md-4 control-label" for="date_add">Date d'ajout</label>  
-    <div class="col-md-4">
-    <input id="date_add" name="date_add" class="form-control input-md" type="text" placeholder="Ex : 21-10-2022">
-        
-    </div>
-    </div>-->
 
     <!-- Text input-->
     <div class="form-group">

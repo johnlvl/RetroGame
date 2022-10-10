@@ -1,7 +1,6 @@
 <?php
 session_start();
 require('db.php');
-
 // CONNEXION
 if(!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['password'])){
 
@@ -16,7 +15,7 @@ if(!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST[
 
 	echo $password;
 
-	$req = $db->prepare('SELECT * FROM admin WHERE first_name = ?, last_name = ?');
+	$req = $db->prepare('SELECT * FROM admin WHERE first_name = ? AND last_name = ?');
 	$req->execute(array($first_name, $last_name));
 
 	while($admin = $req->fetch()){
@@ -24,7 +23,7 @@ if(!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST[
 		if($password == $admin['password']){
 			$error = 0;
 			$_SESSION['connect'] = 1;
-			$_SESSION['pseudo']	 = $admin['pseudo'];
+			$_SESSION['admin_id']	 = $admin['id'];
 
 			/*if(isset($_POST['connect'])) {
 				setcookie('log', $admin['secret'], time() + 365*24*3600, '/', null, false, true);

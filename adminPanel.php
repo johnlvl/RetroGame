@@ -39,36 +39,39 @@ require('db.php');
         <div class="row d-flex justify-content-center">
             <div class="col-lg-8">
                 <h2 class="fw-bold mb-5">Panneau Administrateur</h2>
+                <?php if(isset($_SESSION['connect'])){
+                    echo 'Connecter';
+                }
+                ?>
             </div>
         
 
 
-
-
-<?php
-if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POST["price"])){
-    if(isset($_POST["name"]) && isset($_POST["product_categorie"]) && isset($_POST["price"])){
-        $name = htmlspecialchars($_POST["name"]);
-        $product_categorie = htmlspecialchars($_POST["product_categorie"]);
-        $price = htmlspecialchars($_POST["price"]);
-
-        //$filebutton = htmlspecialchars($_POST["filebutton"]);
-
-        //requête
-        $req = $db->prepare("INSERT INTO article (name, platform, price) VALUES (:name, :platform, :price)");
-        //injecte les données
-        $req->bindValue(":name", $name, PDO::PARAM_STR);
-        $req->bindValue(":platform", $product_categorie, PDO::PARAM_STR);
-        $req->bindValue(":price", $price, PDO::PARAM_STR);
-        
-        //exécute la requête
-        $req->execute();
-    } else {
-        echo "Problème";
-    }
-}
-?>
 <!--Ajouter un article-->
+<?php
+        if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POST["price"])){
+
+                $name = htmlspecialchars($_POST["name"]);
+                $product_categorie = htmlspecialchars($_POST["product_categorie"]);
+                $price = htmlspecialchars($_POST["price"]);
+
+                //$filebutton = htmlspecialchars($_POST["filebutton"]);
+
+                //requête
+                $req = $db->prepare("INSERT INTO article (name, platform, price) VALUES (:name, :platform, :price)");
+                //injecte les données
+                $req->bindValue(":name", $name, PDO::PARAM_STR);
+                $req->bindValue(":platform", $product_categorie, PDO::PARAM_STR);
+                $req->bindValue(":price", $price, PDO::PARAM_STR);
+                
+                
+                //exécute la requête
+                $req->execute();
+                
+            
+        }
+?>
+
 <form method="POST" action="adminPanel.php">
 <fieldset>
 
@@ -81,9 +84,9 @@ if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POS
 
     <!-- Text input-->
     <div class="form-group">
-    <label class="col-md-12 control-label" for="product_name">Nom du produit</label>  
+    <label class="col-md-12 control-label" for="name">Nom du produit</label>  
     <div class="col-md-12">
-    <input id="product_name" name="name" class="form-control input-md" type="text">
+    <input id="name" name="name" class="form-control input-md" type="text">
         
     </div>
     </div>
@@ -105,12 +108,6 @@ if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POS
     <label class="col-md-12 control-label" for="price">Prix</label>  
     <div class="col-md-12">
     <input id="price" name="price" class="form-control input-md" type="text">
-
-    <!-- Text input-->
-    <div class="form-group">
-    <label class="col-md-12 control-label" for="date">Date d'ajout</label>  
-    <div class="col-md-12">
-    <input id="price" name="dateAdd" class="form-control input-md" type="text">
         
     <!-- File Button --> 
     <div class="form-group">
@@ -195,7 +192,7 @@ if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POS
     <!-- ajouter seller -->
         <?php
         if(!empty($_POST["sellerFirstName"]) && !empty($_POST["sellerLastName"]) && !empty($_POST["sellerPassword"])){
-            if(isset($_POST["sellerFirstName"]) && isset($_POST["sellerLastName"]) && isset($_POST["sellerPassword"])){
+            
                 $sellerFirstName = htmlspecialchars($_POST["sellerFirstName"]);
                 $sellerLastName = htmlspecialchars($_POST["sellerLastName"]);
                 // Cryptage mdp
@@ -209,10 +206,6 @@ if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POS
                 $req->bindValue(":password", $sellerPassword, PDO::PARAM_STR);
                 //exécute la requête
                 $req->execute();
-        
-            } else {
-                echo "Problème";
-            }
         }
         ?>
         <br><legend>Ajout vendeur</legend>
