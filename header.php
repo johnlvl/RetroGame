@@ -17,7 +17,7 @@
 <header id="container">
        <div class="nav">
             <div class="topLogo">
-            <img src="Design/RetroGame_1.png" alt="logo">
+            <a href="index.php"><img src="Design/RetroGame_1.png" alt="logo"></a>
             </div>
 
             <div class="searchBar">
