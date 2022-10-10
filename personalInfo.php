@@ -4,6 +4,7 @@ session_start();
 //connection à la bdd
 require('db.php');
 
+if(isset($_SESSION['connect'])){
 //requête
 $req = $db->prepare("SELECT * FROM customer");
 $req->execute(array());
@@ -131,8 +132,7 @@ $lastCommand = $req->fetchAll();
           //requête
           $req = $db->query("SELECT * FROM last_command");
           //récupère les données
-          $lastCommand = $req->fetchAll();
-          foreach($lastCommand as $lastCommands): 
+          $lastCommand = $req->fetchAll(); 
           ?>
 
 <div class="container h-100">
@@ -146,6 +146,7 @@ $lastCommand = $req->fetchAll();
             <div class="row align-items-center">
               
               <div class="col-md-2 d-flex justify-content-center">
+                <?php foreach($lastCommand as $lastCommands): ?>
                 <div>
                   <p class="small text-muted mb-4 pb-2">Nom</p>
                   <p class="lead fw-normal mb-0" name="name"><?php echo $lastCommands["name"]?></p>
@@ -192,7 +193,7 @@ $lastCommand = $req->fetchAll();
   
   </form>
 
-  <?php endforeach; ?>
+  <?php endforeach; }?>
 </section>
 
 </body>
