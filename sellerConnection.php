@@ -1,7 +1,6 @@
 <?php
 session_start();
 require('db.php');
-
 // CONNEXION
 if(!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['password'])){
 
@@ -16,16 +15,15 @@ if(!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST[
 
 	echo $password;
 
-	$req = $db->prepare('SELECT * FROM seller WHERE first_name = ?, last_name = ?');
+	$req = $db->prepare('SELECT * FROM seller WHERE first_name = ? AND last_name = ?');
 	$req->execute(array($first_name, $last_name));
-
+  
 	while($seller = $req->fetch()){
 
 		if($password == $seller['password']){
 			$error = 0;
 			$_SESSION['connect'] = 1;
-			$_SESSION['pseudo']	 = $seller['pseudo'];
-
+			$_SESSION['seller_id'] = $seller['id'];
 			/*if(isset($_POST['connect'])) {
 				setcookie('log', $seller['secret'], time() + 365*24*3600, '/', null, false, true);
 			}*/
@@ -91,13 +89,13 @@ if(!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST[
             <div class="row">
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <input type="text" id="form3Example1" class="form-control" name='fist_name' />
+                  <input type="text" id="form3Example1" class="form-control" name="first_name" />
                   <label class="form-label" for="form3Example1">Prénom</label>
                 </div>
               </div>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <input type="text" id="form3Example2" class="form-control" name='last_name'/>
+                  <input type="text" id="form3Example2" class="form-control" name="last_name"/>
                   <label class="form-label" for="form3Example2">Nom</label>
                 </div>
               </div>
@@ -105,7 +103,7 @@ if(!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST[
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-              <input type="password" id="form3Example4" class="form-control" name='password'/>
+              <input type="password" id="form3Example4" class="form-control" name="password"/>
               <label class="form-label" for="form3Example4">Mot de passe</label>
             </div>
 

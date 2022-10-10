@@ -4,6 +4,7 @@ session_start();
 //connection à la bdd
 require('db.php');
 
+// CONNEXION
 
 ?>
 <!DOCTYPE html>
@@ -43,30 +44,33 @@ require('db.php');
         </div>
        </div>
 
+<!--Ajouter un article-->
 <?php
-    if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POST["price"])){
-        if(isset($_POST["name"]) && isset($_POST["product_categorie"]) && isset($_POST["price"])){
-            $name = htmlspecialchars($_POST["name"]);
-            $product_categorie = htmlspecialchars($_POST["product_categorie"]);
-            $price = htmlspecialchars($_POST["price"]);
+if(isset($_SESSION['connect'])){
+        if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POST["price"])){
+            // if(isset($_POST["name"]) && isset($_POST["product_categorie"]) && isset($_POST["price"])){
+                $name = htmlspecialchars($_POST["name"]);
+                $product_categorie = htmlspecialchars($_POST["product_categorie"]);
+                $price = htmlspecialchars($_POST["price"]);
 
-            //$filebutton = htmlspecialchars($_POST["filebutton"]);
+                //$filebutton = htmlspecialchars($_POST["filebutton"]);
 
-            //requête
-            $req = $db->prepare("INSERT INTO article (name, platform, price) VALUES (:name, :platform, :price)");
-            //injecte les données
-            $req->bindValue(":name", $name, PDO::PARAM_STR);
-            $req->bindValue(":platform", $product_categorie, PDO::PARAM_STR);
-            $req->bindValue(":price", $price, PDO::PARAM_STR);
-            
-            //exécute la requête
-            $req->execute();
-        } else {
-            echo "Problème";
+                //requête
+                $req = $db->prepare("INSERT INTO article (name, platform, price, seller_id) VALUES (:name, :platform, :price, :seller_id)");
+                //injecte les données
+                $req->bindValue(":name", $name, PDO::PARAM_STR);
+                $req->bindValue(":platform", $product_categorie, PDO::PARAM_STR);
+                $req->bindValue(":price", $price, PDO::PARAM_STR);
+                $req->bindValue(":seller_id", $_SESSION['seller_id'], PDO::PARAM_STR);
+                
+                //exécute la requête
+                $req->execute();
+                
+            // }
         }
 }
 ?>
-<!--Ajouter un article-->
+
 <form method="POST" action="sellerPanel.php">
 <fieldset>
 
@@ -96,6 +100,15 @@ require('db.php');
         
     </div>
     </div>
+
+    <!-- Text input
+    <div class="form-group">
+    <label class="col-md-4 control-label" for="date_add">Date d'ajout</label>  
+    <div class="col-md-4">
+    <input id="date_add" name="date_add" class="form-control input-md" type="text" placeholder="Ex : 21-10-2022">
+        
+    </div>
+    </div>-->
 
     <!-- Text input-->
     <div class="form-group">
