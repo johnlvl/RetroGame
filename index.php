@@ -233,6 +233,25 @@ session_start();
             </figure>
         </div>
 
+        <?php 
+            //requête
+            $req = $db->prepare("SELECT * FROM article");
+            $req->execute(array());
+
+            //récupère les données
+            $newArticle = $req->fetchAll();
+
+            foreach($newArticle as $newArticles):
+        ?>
+        <!-- <div class="images">
+            <figure class="image">
+                <img class="imageItem" src="" alt="">
+                <figcaption class="image-description"><?php echo $newArticles['price'] ?></figcaption>
+                <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=<?php $newArticles['name'] ?>&amp;quantity=1&amp;price=<?php $newArticles['price'] ?>" onclick="window.location.href='shoppingCard.php'(this.href, '', 
+                                    'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Acheter</a></button>
+            </figure>
+        </div>
+        <?php endforeach; ?> -->
     </div>
 
 
