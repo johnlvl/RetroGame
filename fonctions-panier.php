@@ -10,7 +10,6 @@ function creationPanier(){
       $_SESSION['panier']['name'] = array();
       $_SESSION['panier']['quantity'] = array();
       $_SESSION['panier']['price'] = array();
-      $_SESSION['panier']['verrou'] = false;
    }
    return true;
 }
@@ -26,7 +25,7 @@ function creationPanier(){
 function ajouterArticle($name,$quantity,$price){
 
    //Si le panier existe
-   if (!isVerrouille() && isset($_SESSION['panier']['name']))
+   if (isset($_SESSION['panier']['name']))
    {
       //Si le produit existe déjà on ajoute seulement la quantité
       $positionProduit = array_search($name, $_SESSION['panier']['name']);
@@ -49,7 +48,7 @@ function ajouterArticle($name,$quantity,$price){
       $_SESSION['panier']=['name'][$name];
       $_SESSION['panier']=['quantity'][$quantity];
       $_SESSION['panier']=['price'][$price];
-      $_SESSION['panier']['verrou'] = false;
+      // $_SESSION['panier']['verrou'] = false;
    }
 }
 
@@ -63,7 +62,7 @@ function ajouterArticle($name,$quantity,$price){
  */
 function modifierQTeArticle($name,$quantity){
    //Si le panier existe
-   if (creationPanier() && !isVerrouille())
+   if (creationPanier())
    {
       //Si la quantité est positive on modifie sinon on supprime l'article
       if ($quantity > 0)
@@ -90,14 +89,14 @@ function modifierQTeArticle($name,$quantity){
  */
 function supprimerArticle($name){
    //Si le panier existe
-   if (creationPanier() && !isVerrouille())
+   if (creationPanier())
    {
       //Nous allons passer par un panier temporaire
       $tmp=array();
       $tmp['name'] = array();
       $tmp['quantity'] = array();
       $tmp['price'] = array();
-      $tmp['verrou'] = $_SESSION['panier']['verrou'];
+      
 
       for($i = 0; $i < count($_SESSION['panier']['name']); $i++)
       {
@@ -139,17 +138,6 @@ function MontantGlobal(){
  */
 function supprimePanier(){
    unset($_SESSION['panier']);
-}
-
-/**
- * Permet de savoir si le panier est verrouillé
- * @return booleen
- */
-function isVerrouille(){
-   if (isset($_SESSION['panier']) && $_SESSION['panier']['verrou'])
-   return true;
-   else
-   return false;
 }
 
 /**
