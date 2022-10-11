@@ -245,7 +245,7 @@ session_start();
         ?>
         <div class="images">
             <figure class="image">
-                <img class="imageItem" src="" alt="">
+                <img class="imageItem" src="<?php $newArticles['picture'] ?>" alt="">
                 <figcaption class="image-description"><?php echo $newArticles['price'] ?></figcaption>
                 <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=<?php $newArticles['name'] ?>&amp;quantity=1&amp;price=<?php $newArticles['price'] ?>" onclick="window.location.href='shoppingCard.php'(this.href, '', 
                                     'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Acheter</a></button>

@@ -47,20 +47,20 @@ require('db.php');
 <!--Ajouter un article-->
 <?php
 if(isset($_SESSION['connect'])){
-        if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POST["price"])){
+        if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POST["price"]) && !empty($_POST["picture"])){
 
                 $name = htmlspecialchars($_POST["name"]);
                 $product_categorie = htmlspecialchars($_POST["product_categorie"]);
                 $price = htmlspecialchars($_POST["price"]);
-
-                //$filebutton = htmlspecialchars($_POST["filebutton"]);
+                $picture = htmlspecialchars($_POST["picture"]);
 
                 //requête
-                $req = $db->prepare("INSERT INTO article (name, platform, price, seller_id) VALUES (:name, :platform, :price, :seller_id)");
+                $req = $db->prepare("INSERT INTO article (name, platform, price, picture, seller_id) VALUES (:name, :platform, :price, :picture, :seller_id)");
                 //injecte les données
                 $req->bindValue(":name", $name, PDO::PARAM_STR);
                 $req->bindValue(":platform", $product_categorie, PDO::PARAM_STR);
                 $req->bindValue(":price", $price, PDO::PARAM_STR);
+                $req->bindValue(":picture", $picture, PDO::PARAM_STR);
                 $req->bindValue(":seller_id", $_SESSION['seller_id'], PDO::PARAM_STR);
                 
                 //exécute la requête
@@ -109,9 +109,9 @@ if(isset($_SESSION['connect'])){
         
     <!-- File Button --> 
     <div class="form-group">
-    <label class="col-md-4 control-label" for="filebutton">Image</label>
+    <label class="col-md-4 control-label" for="picture">Image</label>
     <div class="col-md-4">
-        <input id="filebutton" name="filebutton" class="input-file" type="file">
+        <input id="picture" name="picture" class="input-file" type="file">
     </div>
     </div>
 
