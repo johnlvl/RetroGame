@@ -243,7 +243,7 @@ session_start();
 
             foreach($newArticle as $newArticles):
         ?>
-        <!-- <div class="images">
+        <div class="images">
             <figure class="image">
                 <img class="imageItem" src="" alt="">
                 <figcaption class="image-description"><?php echo $newArticles['price'] ?></figcaption>
@@ -251,7 +251,7 @@ session_start();
                                     'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Acheter</a></button>
             </figure>
         </div>
-        <?php endforeach; ?> -->
+        <?php endforeach; ?>
     </div>
 
 
