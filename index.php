@@ -188,50 +188,6 @@ session_start();
     </div>
 
     <div id="sousDerniereSortie">   
-        <div class="images1">
-            <figure class="image">
-                <img class="imageItem" src="Design/Nouveaute_1.jpg" alt="">
-                <figcaption class="image-description">79.99 €</figcaption>
-                <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Session&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
-                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Acheter</a></button>
-            </figure>
-        </div>
-
-        <div class="images">
-            <figure class="image">
-                <img class="imageItem" src="Design/Nouveaute_2.jpg" alt="">
-                <figcaption class="image-description">79.99 €</figcaption>
-                <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Stray&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
-                                    'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Acheter</a></button>
-            </figure>
-        </div>
-
-        <div class="images">
-            <figure class="image">
-                <img class="imageItem" src="Design/Nouveaute_3.jpg" alt="">
-                <figcaption class="image-description">69.99 €</figcaption>
-                <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Splatoon 3&amp;quantity=1&amp;price=69.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
-                                    'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Acheter</a></button>
-            </figure>
-        </div>
-
-        <div class="images">
-            <figure class="image">
-                <img class="imageItem" src="Design/Nouveaute_4.jpg" alt="">
-                <figcaption class="image-description">79.99 €</figcaption>
-                <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=SteeelRising&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
-                                    'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Acheter</a></button>
-            </figure>
-        </div>
-
-        <div class="images">
-            <figure class="image">
-                <img class="imageItem" src="Design/Nouveaute_5.jpg" alt="">
-                <figcaption class="image-description">69.99 €</figcaption>
-                <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Made in Abyss&amp;quantity=1&amp;price=69.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
-                                    'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Acheter</a></button>
-            </figure>
-        </div>
 
         <?php 
             //requête
@@ -245,9 +201,9 @@ session_start();
         ?>
         <div class="images">
             <figure class="image">
-                <img class="imageItem" src="<?php $newArticles['picture'] ?>" alt="">
+                <img class="imageItem" src="<?php echo $newArticles['picture'] ?>" alt="">
                 <figcaption class="image-description"><?php echo $newArticles['price'] ?></figcaption>
-                <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=<?php $newArticles['name'] ?>&amp;quantity=1&amp;price=<?php $newArticles['price'] ?>" onclick="window.location.href='shoppingCard.php'(this.href, '', 
+                <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=<?php echo $newArticles['name'] ?>&amp;quantity=1&amp;price=<?php echo $newArticles['price'] ?>" onclick="window.location.href='shoppingCard.php'(this.href, '', 
                                     'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Acheter</a></button>
             </figure>
         </div>
