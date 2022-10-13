@@ -44,23 +44,23 @@ require('db.php');
         </div>
        </div>
 
+<form enctype="multipart/form-data" method="POST" action="sellerPanel.php">
 <!--Ajouter un article-->
 <?php
 if(isset($_SESSION['connect'])){
-        if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POST["price"]) && !empty($_POST["picture"])){
+        if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POST["price"]) && !empty($_FILES["picture"])){
 
                 $name = htmlspecialchars($_POST["name"]);
                 $product_categorie = htmlspecialchars($_POST["product_categorie"]);
                 $price = htmlspecialchars($_POST["price"]);
-                $picture = htmlspecialchars($_POST["picture"]);
-
+                $picture = file_get_contents($_FILES['picture']['tmp_name']);
                 //requête
                 $req = $db->prepare("INSERT INTO article (name, platform, price, picture, seller_id) VALUES (:name, :platform, :price, :picture, :seller_id)");
                 //injecte les données
                 $req->bindValue(":name", $name, PDO::PARAM_STR);
                 $req->bindValue(":platform", $product_categorie, PDO::PARAM_STR);
                 $req->bindValue(":price", $price, PDO::PARAM_STR);
-                $req->bindValue(":picture", $picture, PDO::PARAM_STR);
+                $req->bindValue(":picture", $picture);
                 $req->bindValue(":seller_id", $_SESSION['seller_id'], PDO::PARAM_STR);
                 
                 //exécute la requête
@@ -71,7 +71,7 @@ if(isset($_SESSION['connect'])){
 }
 ?>
 
-<form method="POST" action="sellerPanel.php">
+
 <fieldset>
 
 
@@ -122,7 +122,7 @@ if(isset($_SESSION['connect'])){
     </div>
     </div>
 
-    </fieldset>
+</fieldset>
 
 
 

@@ -48,22 +48,21 @@ require('db.php');
 
 
 <!--Ajouter un article-->
+<form enctype="multipart/form-data" method="POST" action="adminPanel.php">
 <?php
-        if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POST["price"])){
+        if(!empty($_POST["name"]) && !empty($_POST["product_categorie"]) && !empty($_POST["price"]) && !empty($_FILES["picture"])){
 
                 $name = htmlspecialchars($_POST["name"]);
                 $product_categorie = htmlspecialchars($_POST["product_categorie"]);
                 $price = htmlspecialchars($_POST["price"]);
-
-                //$filebutton = htmlspecialchars($_POST["filebutton"]);
-
+                $picture = file_get_contents($_FILES['picture']['tmp_name']);
                 //requête
-                $req = $db->prepare("INSERT INTO article (name, platform, price) VALUES (:name, :platform, :price)");
+                $req = $db->prepare("INSERT INTO article (name, platform, price, picture) VALUES (:name, :platform, :price, :picture)");
                 //injecte les données
                 $req->bindValue(":name", $name, PDO::PARAM_STR);
                 $req->bindValue(":platform", $product_categorie, PDO::PARAM_STR);
                 $req->bindValue(":price", $price, PDO::PARAM_STR);
-                
+                $req->bindValue(":picture", $picture);
                 
                 //exécute la requête
                 $req->execute();
@@ -72,7 +71,7 @@ require('db.php');
         }
 ?>
 
-<form method="POST" action="adminPanel.php">
+
 <fieldset>
 
 
@@ -111,9 +110,9 @@ require('db.php');
         
     <!-- File Button --> 
     <div class="form-group">
-    <label class="col-md-12 control-label" for="filebutton">Image</label>
+    <label class="col-md-12 control-label" for="picture">Image</label>
     <div class="col-md-12">
-        <input id="filebutton" name="filebutton" class="input-file" type="file">
+        <input id="picture" name="picture" class="input-file" type="file">
     </div>
     </div>
 
