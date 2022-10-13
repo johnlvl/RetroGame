@@ -174,10 +174,14 @@ header{
 }
 #sousDerniereSortie{
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
     margin: 5px;
 } 
+.images{
+    margin-bottom: 70px;
+}
 .image-description{
     margin-top: 5px;
 }

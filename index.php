@@ -184,7 +184,7 @@ session_start();
 
 <!-- Sous Derniere sortie-->
     <div id="titleSousDS">
-        <h4>Dernière sortie</h4>
+        <h4>Catalogue</h4>
     </div>
 
     <div id="sousDerniereSortie">   
@@ -213,7 +213,7 @@ session_start();
 
 
 
-<!--TOP VENTES-->
+<!-- TOP VENTES
     <div id="titleTopVente">
             <h4>Top ventes</h4>
     </div>
@@ -265,7 +265,7 @@ session_start();
         </figure>
         </div>
     </div>
-
+ -->
 
 
 <!--VOIR TOUT-->
