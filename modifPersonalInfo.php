@@ -83,7 +83,7 @@ if(isset($_POST["first_name"]) && isset($_POST["last_name"])){
                             <p class="mb-0">Email</p>
                         </div>
                         <div class="col-sm-9">
-                            <input type="text" name="email" class="text-muted mb-0">
+                            <input type="text" name="email" class="text-muted mb-0" required>
                         </div>
                         </div>
                         <hr>
@@ -109,14 +109,14 @@ if(isset($_POST["first_name"]) && isset($_POST["last_name"])){
                             <p class="mb-0">Mot de passe</p>
                         </div>
                         <div class="col-sm-9">
-                            <input type="text" name="password" class="text-muted mb-0">
+                            <input type="text" name="password" class="text-muted mb-0" required>
                         </div>
                         </div>
                     </div>
                 </div>
             </div>
                 <div class="d-flex justify-content-end">
-                    <button type="button" class="btn btn-light btn-lg me-2"><a href="index.php" >Retour à l'acceuil</a></button>
+                    <button type="button" class="btn btn-light btn-lg me-2"><a href="personalInfo.php" >Retour</a></button>
                     <button type="submit" class="btn btn-light btn-lg">Confirmer les changements</button>
                 </div>
         </div>
