@@ -157,7 +157,7 @@ session_start();
                     <img src="Design/Fifa23.jpg" class="rounded float-center" alt="...">
                     <div class="subPicFifa">
                             <div class="priceFifa">
-                                <h3>79.99</h3>
+                                <h3>79.99 €</h3>
                                 <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Fifa 23&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
                                 'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Précommander</a></button>
                             </div>
@@ -202,70 +202,13 @@ session_start();
         <div class="images">
             <figure class="image">
             <?php echo '<img src="data:picture/jpeg;base64,'.base64_encode($newArticles['picture']).'"/>'; ?>
-                <figcaption class="image-description"><?php echo $newArticles['price'] ?></figcaption>
+                <figcaption class="image-description"><?php echo $newArticles['price'] ?> €</figcaption>
                 <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=<?php echo $newArticles['name'] ?>&amp;quantity=1&amp;price=<?php echo $newArticles['price'] ?>" onclick="window.location.href='shoppingCard.php'(this.href, '', 
                                     'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Acheter</a></button>
             </figure>
         </div>
         <?php endforeach; ?>
     </div>
-
-
-
-
-<!-- TOP VENTES
-    <div id="titleTopVente">
-            <h4>Top ventes</h4>
-    </div>
-
-    <div id="topVente">
-        
-        <div class="imagesTopVente1">
-        <figure class="imageTopVente">
-            <img class="imageItem" src="Design/Top_1.jpg" alt="">
-            <figcaption class="image-description">79.99 €</figcaption>
-            <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=God of War Ragnarok&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
-                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Précommander</a></button>
-        </figure>
-        </div>
-
-        <div class="imagesTopVente">
-        <figure class="imageTopVente">
-            <img class="imageItem" src="Design/Top_2.png" alt="">
-            <figcaption class="image-description">79.99 €</figcaption>
-            <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Fifa 23&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
-                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Acheter</a></button>
-        </figure>
-        </div>
-
-        <div class="imagesTopVente">
-        <figure class="imageTopVente">
-            <img class="imageItem" src="Design/Top_3.jpg" alt="">
-            <figcaption class="image-description">79.99 €</figcaption>
-            <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Hogwarts Legacy&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
-                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Précommander</a></button>
-        </figure>
-        </div>
-
-        <div class="imagesTopVente">
-        <figure class="imageTopVente">
-            <img class="imageItem" src="Design/Top_4.webp" alt="">
-            <figcaption class="image-description">79.99 €</figcaption>
-            <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Assassin's creed Mirage&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
-                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Précommander</a></button>
-        </figure>
-        </div>
-
-        <div class="imagesTopVente">
-        <figure class="imageTopVente">
-            <img class="imageItem" src="Design/Top_5.jpg" alt="">
-            <figcaption class="image-description">79.99 €</figcaption>
-            <button type="button"><a href="shoppingCard.php?action=ajout&amp;name=Call of Duty MW2&amp;quantity=1&amp;price=79.99" onclick="window.location.href='shoppingCard.php'(this.href, '', 
-                                'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Précommander</a></button>
-        </figure>
-        </div>
-    </div>
- -->
 
 
 <!--VOIR TOUT-->
