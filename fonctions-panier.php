@@ -5,12 +5,11 @@
  * @return booleen
  */
 function creationPanier(){
-   if (!isset($_SESSION['panier'])){
       $_SESSION['panier']=array();
       $_SESSION['panier']['name'] = array();
       $_SESSION['panier']['quantity'] = array();
       $_SESSION['panier']['price'] = array();
-   }
+   
    return true;
 }
 
@@ -45,9 +44,10 @@ function ajouterArticle($name,$quantity,$price){
    else
    {
       //Sinon on ajoute le produit
-      $_SESSION['panier']=['name'][$name];
-      $_SESSION['panier']=['quantity'][$quantity];
-      $_SESSION['panier']=['price'][$price];
+      creationPanier();
+      array_push( $_SESSION['panier']['name'],$name);
+      array_push( $_SESSION['panier']['quantity'],$quantity);
+      array_push( $_SESSION['panier']['price'],$price);
       // $_SESSION['panier']['verrou'] = false;
    }
 }

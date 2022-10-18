@@ -23,7 +23,13 @@ if(!empty($_POST['email']) && !empty($_POST['password'])){
 		if($password == $customer['password']){
 			$error = 0;
 			$_SESSION['connect'] = 1;
-			$_SESSION['pseudo']	 = $customer['pseudo'];
+      $_SESSION['id'] = $customer['id'];
+      $_SESSION['first_name'] = $customer['first_name'];
+      $_SESSION['last_name'] = $customer['last_name'];
+      $_SESSION['email'] = $customer['email'];
+      $_SESSION['password'] = $customer['password'];
+      $_SESSION['phone'] = $customer['phone'];
+      $_SESSION['adress'] = $customer['adress'];
 
 			/*if(isset($_POST['connect'])) {
 				setcookie('log', $customer['secret'], time() + 365*24*3600, '/', null, false, true);

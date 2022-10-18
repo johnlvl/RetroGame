@@ -4,18 +4,6 @@ session_start();
 //connection à la bdd
 require('db.php');
 
-
-if(isset($_POST["first_name"]) && isset($_POST["last_name"])){
-    // Cryptage mdp
-    $password = "aq1".sha1($_POST["password"]."1254")."25";
-    //requête
-    $req = $db->prepare("UPDATE customer SET first_name = ?, last_name = ?, email = ?, phone = ?, adress = ?, password = ?");
-    $req->execute(array($_POST["first_name"], $_POST["last_name"], $_POST["email"], $_POST["phone"], $_POST["adress"], $password));
-
-    //récupère les données
-    $modif = $req->fetchAll();
-
-}
 ?>
 
 <!DOCTYPE html>
@@ -65,6 +53,16 @@ if(isset($_POST["first_name"]) && isset($_POST["last_name"])){
                             <p class="mb-0">Nom</p>
                         </div>
                         <div class="col-sm-9">
+                            <?php if(!empty($_POST["last_name"])){
+                                    //requête
+                                    $req = $db->prepare("UPDATE customer SET last_name = ? WHERE id = ?");
+                                    $req->execute(array($_POST["last_name"], $_SESSION['id']));
+
+                                    //récupère les données
+                                    $modif = $req->fetchAll();
+
+                                }
+                            ?>
                             <input type="text" name="last_name" class="text-muted mb-0">
                         </div>
                         </div>
@@ -74,6 +72,16 @@ if(isset($_POST["first_name"]) && isset($_POST["last_name"])){
                             <p class="mb-0">Prénom</p>
                         </div>
                         <div class="col-sm-9">
+                            <?php if(!empty($_POST["first_name"])){
+                                    //requête
+                                    $req = $db->prepare("UPDATE customer SET first_name = ? WHERE id = ?");
+                                    $req->execute(array($_POST["first_name"], $_SESSION['id']));
+
+                                    //récupère les données
+                                    $modif = $req->fetchAll();
+
+                                }
+                            ?>
                             <input type="text" name="first_name" class="text-muted mb-0">
                         </div>
                         </div>
@@ -83,6 +91,16 @@ if(isset($_POST["first_name"]) && isset($_POST["last_name"])){
                             <p class="mb-0">Email</p>
                         </div>
                         <div class="col-sm-9">
+                            <?php if(!empty($_POST["email"])){
+                                    //requête
+                                    $req = $db->prepare("UPDATE customer SET email = ? WHERE id = ?");
+                                    $req->execute(array($_POST["email"], $_SESSION['id']));
+
+                                    //récupère les données
+                                    $modif = $req->fetchAll();
+
+                                }
+                            ?>
                             <input type="text" name="email" class="text-muted mb-0" required>
                         </div>
                         </div>
@@ -92,6 +110,16 @@ if(isset($_POST["first_name"]) && isset($_POST["last_name"])){
                             <p class="mb-0">Téléphone Mobile</p>
                         </div>
                         <div class="col-sm-9">
+                            <?php if(!empty($_POST["phone"])){
+                                    //requête
+                                    $req = $db->prepare("UPDATE customer SET phone = ? WHERE id = ?");
+                                    $req->execute(array($_POST["phone"], $_SESSION['id']));
+
+                                    //récupère les données
+                                    $modif = $req->fetchAll();
+
+                                }
+                            ?>
                             <input type="text" name="phone" class="text-muted mb-0">
                         </div>
                         </div>
@@ -101,6 +129,16 @@ if(isset($_POST["first_name"]) && isset($_POST["last_name"])){
                             <p class="mb-0">Adresse</p>
                         </div>
                         <div class="col-sm-9">
+                            <?php if(!empty($_POST["adress"])){
+                                    //requête
+                                    $req = $db->prepare("UPDATE customer SET adress = ? WHERE id = ?");
+                                    $req->execute(array($_POST["adress"], $_SESSION['id']));
+
+                                    //récupère les données
+                                    $modif = $req->fetchAll();
+
+                                }
+                            ?>
                             <input type="text" name="adress" class="text-muted mb-0"></p>
                         </div>
                         <hr>
@@ -109,7 +147,18 @@ if(isset($_POST["first_name"]) && isset($_POST["last_name"])){
                             <p class="mb-0">Mot de passe</p>
                         </div>
                         <div class="col-sm-9">
-                            <input type="text" name="password" class="text-muted mb-0" required>
+                            <?php if(!empty($_POST["password"])){
+                                    $password = "aq1".sha1($_POST["password"]."1254")."25";
+                                    //requête
+                                    $req = $db->prepare("UPDATE customer SET password = ? WHERE id = ?");
+                                    $req->execute(array($password, $_SESSION['id']));
+
+                                    //récupère les données
+                                    $modif = $req->fetchAll();
+
+                                }
+                            ?>
+                            <input type="password" name="password" class="text-muted mb-0" required>
                         </div>
                         </div>
                     </div>

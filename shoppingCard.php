@@ -103,8 +103,6 @@ if (!$erreur){
 
 
     <?php
-    if (creationPanier())
-    {
       if(isset($_SESSION['panier']['name'])){
         $nbArticles=count($_SESSION['panier']['name']);
         if ($nbArticles <= 0)
@@ -134,7 +132,6 @@ if (!$erreur){
       else {
         echo "<tr><td>Votre panier est vide </ td></tr>";
       }
-    }
     ?>
 </table>
 </form>

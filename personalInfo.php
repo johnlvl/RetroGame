@@ -4,10 +4,12 @@ session_start();
 //connection à la bdd
 require('db.php');
 
+// header('location: personalInfo.php');
+
 if(isset($_SESSION['connect'])){
 //requête
-$req = $db->prepare("SELECT * FROM customer");
-$req->execute(array());
+$req = $db->prepare("SELECT * FROM customer WHERE id = ?");
+$req->execute(array($_SESSION['id']));
 
 //récupère les données
 $infoPerso = $req->fetchAll();
