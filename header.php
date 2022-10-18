@@ -1,3 +1,7 @@
+<?php
+session_start();
+    require('db.php');
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -19,9 +23,15 @@
             <div class="topLogo">
             <a href="index.php"><img src="Design/RetroGame_1.png" alt="logo"></a>
             </div>
-
+            <?php if(!empty($_POST['searchBar'])){
+                $search = $_POST['searchBar'];
+                $req = $db->prepare("SELECT * FROM article WHERE name = '$search'");
+                $req->setFetchMode(PDO::FETCH_OBJ);
+                $req->execute();
+            }
+            ?>
             <div class="searchBar">
-                <input type="text" placeholder="Rechercher...">
+                <input type="text" name="searchBar" placeholder="Rechercher...">
             </div>
 
             <div class="logoAccountEtc">
