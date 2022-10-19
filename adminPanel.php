@@ -4,7 +4,7 @@ session_start();
 //connection à la bdd
 require('db.php');
 
-
+if(isset($_SESSION['connect'])){
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -40,7 +40,7 @@ require('db.php');
             <div class="col-lg-8">
                 <h2 class="fw-bold mb-5">Panneau Administrateur</h2>
                 <?php if(isset($_SESSION['connect'])){
-                    echo 'Connecter';
+                    echo 'Bonjour Administrateur';
                 }
                 ?>
             </div>
@@ -266,3 +266,7 @@ require('db.php');
 </section>
 </body>
 </html>
+<?php } else{
+    echo "Erreur accès réservé";
+} 
+?>

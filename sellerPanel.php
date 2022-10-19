@@ -4,8 +4,7 @@ session_start();
 //connection à la bdd
 require('db.php');
 
-// CONNEXION
-
+if(isset($_SESSION['connect'])){
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -171,3 +170,6 @@ if(isset($_SESSION['connect'])){
 </form>
 </body>
 </html>
+<?php } else{
+    echo "Accès réservé";
+}

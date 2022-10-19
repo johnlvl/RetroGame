@@ -10,11 +10,6 @@ if(!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST[
 	$password = $_POST['password'];
 	$error = 1;
 
-  // CRYPTER LE PASSWORD
-	$password = "aq1".sha1($password."1254")."25";
-
-	echo $password;
-
 	$req = $db->prepare('SELECT * FROM admin WHERE first_name = ? AND last_name = ?');
 	$req->execute(array($first_name, $last_name));
 
@@ -84,13 +79,13 @@ if(!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST[
                 }
 		      ?>
 
-          <form method="POST" action="adminPanel.php">
+          <form method="POST" action="adminConnection.php">
           
             <!-- 2 column grid layout with text inputs for the first and last names -->
             <div class="row">
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                  <input type="text" id="form3Example1" class="form-control" name='fist_name' />
+                  <input type="text" id="form3Example1" class="form-control" name='first_name' />
                   <label class="form-label" for="form3Example1">Prénom</label>
                 </div>
               </div>
