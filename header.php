@@ -6,6 +6,9 @@ session_start();
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Site de vente de jeux-vidéo retro et récent.">
+    <meta name="keywords" content="jeux retro, jeux video">
+    <meta name="author" content="John">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="Design/RetroGame_1.png" />
