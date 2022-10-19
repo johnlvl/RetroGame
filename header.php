@@ -19,21 +19,17 @@ session_start();
 
 <!--Header-->
 <header id="container">
+    <form action="index.php" method="POST">
        <div class="nav">
             <div class="topLogo">
             <a href="index.php"><img src="Design/RetroGame_1.png" alt="logo"></a>
             </div>
-            <?php if(!empty($_POST['searchBar'])){
-                $search = $_POST['searchBar'];
-                $req = $db->prepare("SELECT * FROM article WHERE name = '$search'");
-                $req->setFetchMode(PDO::FETCH_OBJ);
-                $req->execute();
-            }
-            ?>
+            
+            
             <div class="searchBar">
                 <input type="text" name="searchBar" placeholder="Rechercher...">
             </div>
-
+    </form>
             <div class="logoAccountEtc">
                 <a href="shoppingCard.php"><img class="panier" src="Design/panier.png" alt="panier"></a>
 

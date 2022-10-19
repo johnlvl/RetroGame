@@ -1,7 +1,37 @@
 <?php
     require('header.php');
-?>
 
+// recherche dans la search bar
+    if(isset($_POST['searchBar'])){
+                $search = $_POST['searchBar'];
+                $req = $db->prepare("SELECT * FROM article WHERE name = '$search'");
+                $req->setFetchMode(PDO::FETCH_OBJ);
+                $req->execute();
+
+                if($row = $req->fetch()){
+            ?>
+                    <br>
+                <div id="search">
+                    <div class="searchResult">
+                    <table>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Plateforme</th>
+                            <th>Prix</th>
+                        </tr>
+                        <tr>
+                            <td><?php echo $row->name; ?></td>
+                            <td><?php echo $row->platform; ?></td>
+                            <td><?php echo $row->price; ?></td>
+                        </tr>
+                    </table>
+                    </div>
+                </div>
+            <?php } else{
+                    echo "Article inconnu";
+                }
+            }
+?>
 <!--NAVBAR-->
     <nav class="navbar navbar-expand-lg" style="background-color: #F5225C;">
         <div class="container">
