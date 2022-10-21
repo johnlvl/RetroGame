@@ -162,6 +162,10 @@ header{
     padding: 5px;
     margin-bottom: 10px;
 }
+#derniereSortie a{
+    text-decoration: none;
+    color: #F5225C;
+}
 
 
 
@@ -201,6 +205,10 @@ header{
     margin-bottom: 10px;
 }
 #sousDerniereSortie figcaption{
+    color: #F5225C;
+}
+#sousDerniereSortie a{
+    text-decoration: none;
     color: #F5225C;
 }
 
