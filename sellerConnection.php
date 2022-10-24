@@ -13,8 +13,6 @@ if(!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST[
   // CRYPTER LE PASSWORD
 	$password = "aq1".sha1($password."1254")."25";
 
-	echo $password;
-
 	$req = $db->prepare('SELECT * FROM seller WHERE first_name = ? AND last_name = ?');
 	$req->execute(array($first_name, $last_name));
   

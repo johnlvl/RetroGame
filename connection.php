@@ -13,8 +13,6 @@ if(!empty($_POST['email']) && !empty($_POST['password'])){
   // CRYPTER LE PASSWORD
 	$password = "aq1".sha1($password."1254")."25";
 
-	echo $password;
-
 	$req = $db->prepare('SELECT * FROM customer WHERE email = ?');
 	$req->execute(array($email));
 
